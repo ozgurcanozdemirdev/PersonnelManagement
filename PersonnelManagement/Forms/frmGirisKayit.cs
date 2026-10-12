@@ -26,7 +26,8 @@ namespace PersonnelManagement.Forms
 
     private void frmGirisKayit_Load(object sender, EventArgs e)
     {
-      _saatTimer = new Timer();
+      _saatTimer?.Dispose();
+      _saatTimer = new Timer(components ?? (components = new Container()));
       _saatTimer.Interval = 1000;
       _saatTimer.Tick += (s, ev) => lblAnlikSaat.Text = DateTime.Now.ToString("HH:mm:ss");
       _saatTimer.Start();
@@ -68,6 +69,7 @@ namespace PersonnelManagement.Forms
 
       try
       {
+        PersonelBilgiTemizle();
         var liste = _personelDal.Ara(arananPersonel);
 
         if (liste.Count == 0)
@@ -158,17 +160,17 @@ namespace PersonnelManagement.Forms
       lblDepartmanBilgi.Text = $"Departman: {p.DepartmanAdi}  |  Pozisyon: {p.PozisyonAdi}";
 
       bool girisVar = _girisKayitDal.BugunkuGirisVarMi(p.PersonelId);
-      bool cikisVar = _girisKayitDal.BugunkuCikisVarMi(p.PersonelId);
+      bool acikKayit = _girisKayitDal.AcikKayitVarMi(p.PersonelId);
 
-      btnGirisYap.Enabled = !girisVar;
-      btnCikisYap.Enabled = girisVar && !cikisVar;
+      btnGirisYap.Enabled = !girisVar && !acikKayit;
+      btnCikisYap.Enabled = acikKayit;
 
-      if (!girisVar)
+      if (!girisVar && !acikKayit)
       {
         lblDurumBilgi.Text = "● Henüz giriş yapmadı";
         lblDurumBilgi.ForeColor = Color.Gray;
       }
-      else if (girisVar && !cikisVar)
+      else if (acikKayit)
       {
         lblDurumBilgi.Text = "● İşyerinde";
         lblDurumBilgi.ForeColor = Color.Green;
@@ -280,7 +282,7 @@ namespace PersonnelManagement.Forms
         DgvSutunlariniAyarla();
 
         lblGunlukToplamGiris.Text =
-            $"Bugün toplam giriş: {liste.Count}  |  Tarih: {DateTime.Today:dd.MM.yyyy}";
+            $"Bugün/açık kayıtlar: {liste.Count}  |  Tarih: {DateTime.Today:dd.MM.yyyy}";
       }
       catch (Exception ex)
       {

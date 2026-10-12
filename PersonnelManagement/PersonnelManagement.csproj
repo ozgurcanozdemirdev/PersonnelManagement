@@ -33,6 +33,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.IO.Compression.FileSystem" />
     <Reference Include="System" />
     <Reference Include="System.Security" />
     <Reference Include="System.Core" />
@@ -98,6 +100,11 @@
     <Compile Include="Forms\frmVardiyaYonetim.Designer.cs">
       <DependentUpon>frmVardiyaYonetim.cs</DependentUpon>
     </Compile>
+    <Compile Include="DAL\RaporDisariAktarma.cs" />
+    <Compile Include="DAL\IslemYetkisi.cs" />
+    <Compile Include="DAL\DatabaseTransaction.cs" />
+    <Compile Include="DAL\EmployeeValidation.cs" />
+    <Compile Include="DAL\ReportPrintDocument.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Forms\frmAnaMenu.resx">
@@ -142,10 +149,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <Content Include="Kaynak\DatabaseSetup.sql" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Kaynak\SqlScript.txt" />
+    <Content Include="Kaynak\DatabaseUpdate.sql" />
+    <Content Include="Kaynak\DatabaseSetup.sql" />
+    <Content Include="Kaynak\README.tr.md" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

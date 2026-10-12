@@ -10,7 +10,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-
 namespace PersonnelManagement.Forms
 {
   public partial class frmLogin : Form
@@ -20,15 +19,14 @@ namespace PersonnelManagement.Forms
       InitializeComponent();
     }
 
+    private bool _girisDevamEdiyor;
     private readonly KullaniciDal _kullaniciDal = new KullaniciDal();
-
     public static Kullanici AktifKullanici { get; private set; }
-
 
     private void frmLogin_Load(object sender, EventArgs e)
     {
       txtSifre.PasswordChar = '*';
-      txtSifre.MaxLength = 50;
+      txtSifre.MaxLength = 100;
       txtKullaniciAdi.MaxLength = 50;
       lblHata.Visible = false;
       lblHata.ForeColor = Color.Red;
@@ -40,8 +38,11 @@ namespace PersonnelManagement.Forms
     {
       GirisYap();
     }
+
     private void GirisYap()
     {
+      if (_girisDevamEdiyor)
+        return;
       if (string.IsNullOrWhiteSpace(txtKullaniciAdi.Text))
       {
         HataGoster("Kullanıcı adı boş bırakılamaz.");
@@ -56,15 +57,14 @@ namespace PersonnelManagement.Forms
         return;
       }
 
+      frmAnaMenu anaMenu = null;
       try
       {
+        _girisDevamEdiyor = true;
+        AktifKullanici = null;
         btnGiris.Enabled = false;
         lblHata.Visible = false;
-
-        Kullanici kullanici = _kullaniciDal.GirisDogrula(
-            txtKullaniciAdi.Text.Trim(),
-            txtSifre.Text);
-
+        Kullanici kullanici = _kullaniciDal.GirisDogrula(txtKullaniciAdi.Text.Trim(), txtSifre.Text);
         if (kullanici == null)
         {
           HataGoster("Kullanıcı adı veya şifre hatalı!");
@@ -74,35 +74,52 @@ namespace PersonnelManagement.Forms
         }
 
         AktifKullanici = kullanici;
-
-        frmAnaMenu anaMenu = new frmAnaMenu();
+        anaMenu = new frmAnaMenu();
         anaMenu.Show();
+        if (anaMenu.IsDisposed)
+          throw new InvalidOperationException("Ana menü açılamadı.");
+        anaMenu.FormClosed += (s, ev) => Close();
         this.Hide();
       }
       catch (Exception ex)
       {
-        HataGoster("Bağlantı hatası: " + ex.Message);
+        anaMenu?.Dispose();
+        AktifKullanici = null;
+        SistemLogger.ClearKullanici();
+        HataGoster("Giriş tamamlanamadı: " + ex.Message);
       }
       finally
       {
-        btnGiris.Enabled = true;
+        _girisDevamEdiyor = false;
+        if (!IsDisposed)
+          btnGiris.Enabled = true;
       }
     }
 
     private void HataGoster(string mesaj)
     {
+      lblHata.MaximumSize = new Size(Math.Max(80, ClientSize.Width - lblHata.Left - 8), 0);
       lblHata.Text = mesaj;
+      ClientSize = new Size(ClientSize.Width, Math.Max(ClientSize.Height, lblHata.Bottom + 12));
       lblHata.Visible = true;
     }
 
     private void txtKullaniciAdi_KeyDown(object sender, KeyEventArgs e)
     {
-      if (e.KeyCode == Keys.Enter) { txtSifre.Focus(); e.SuppressKeyPress = true; }
+      if (e.KeyCode == Keys.Enter)
+      {
+        txtSifre.Focus();
+        e.SuppressKeyPress = true;
+      }
     }
 
     private void txtSifre_KeyDown(object sender, KeyEventArgs e)
     {
-      if (e.KeyCode == Keys.Enter) { GirisYap(); e.SuppressKeyPress = true; }
+      if (e.KeyCode == Keys.Enter)
+      {
+        GirisYap();
+        e.SuppressKeyPress = true;
+      }
     }
 
     private void txtKullaniciAdi_TextChanged(object sender, EventArgs e)

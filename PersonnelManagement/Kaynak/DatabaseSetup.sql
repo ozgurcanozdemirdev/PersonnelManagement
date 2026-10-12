@@ -1,41 +1,16 @@
--- PersonnelManagement V0.8.0: yeni kurulum; mevcut veritabanı silinmez.
--- Bu dosya ile DatabaseSetup.sql aynı kurulumu içerir; yalnızca birini çalıştırın.
-
+﻿-- PersonnelManagement 0.9.0 - Yeni kurulum
+-- Var olan veritabani silinmez. Mevcut kurulum icin DatabaseUpdate.sql kullanilir.
+-- Dosyanin tamami tek batch olarak calistirilir.
 USE [master];
-GO
-SET NOEXEC OFF;
-GO
-
-EXEC sys.sp_set_session_context @key = N'PersonnelManagementSetupCreated', @value = 0;
-GO
-
-IF DB_ID(N'PersonelTakipDb') IS NULL
-BEGIN
-    BEGIN TRY
-        EXEC(N'CREATE DATABASE [PersonelTakipDb] COLLATE Turkish_CI_AS;');
-        EXEC sys.sp_set_session_context @key = N'PersonnelManagementSetupCreated', @value = 1;
-    END TRY
-    BEGIN CATCH
-        DECLARE @Hata nvarchar(2048) = ERROR_MESSAGE();
-        RAISERROR(N'Veritabanı oluşturulamadı: %s', 16, 1, @Hata);
-        SET NOEXEC ON;
-    END CATCH;
-END;
-GO
-
-USE [PersonelTakipDb];
-GO
-IF ISNULL(CAST(SESSION_CONTEXT(N'PersonnelManagementSetupCreated') AS int), 0) <> 1
-BEGIN
-    RAISERROR(N'PersonelTakipDb zaten var. Kurulum için boş ve farklı bir veritabanı adı kullanın.', 16, 1);
-    SET NOEXEC ON;
-END;
-GO
+SET NOCOUNT ON;
+IF DB_ID(N'PersonelTakipV090Db') IS NOT NULL
+ THROW 51000, N'PersonelTakipV090Db zaten mevcut. Veriler korunuyor; DatabaseUpdate.sql dosyasini kullanin.', 1;
+EXEC(N'CREATE DATABASE [PersonelTakipV090Db] COLLATE Turkish_CI_AS;');
+EXEC sys.sp_executesql N'USE [PersonelTakipV090Db];
 SET XACT_ABORT ON;
-BEGIN TRANSACTION;
-GO
-
--- ============================================================
+BEGIN TRY
+ BEGIN TRANSACTION;
+EXEC sys.sp_executesql N''-- ============================================================
 -- 1. Departman
 -- ============================================================
 CREATE TABLE Departman
@@ -45,10 +20,8 @@ CREATE TABLE Departman
     Aciklama        NVARCHAR(255) NULL,
     AktifMi         BIT           NOT NULL DEFAULT 1,
     OlusturmaTarihi DATETIME      NOT NULL DEFAULT GETDATE()
-);
-GO
-
--- ============================================================
+);'';
+EXEC sys.sp_executesql N''-- ============================================================
 -- 2. Pozisyon
 -- ============================================================
 CREATE TABLE Pozisyon
@@ -60,10 +33,8 @@ CREATE TABLE Pozisyon
     AktifMi         BIT           NOT NULL DEFAULT 1,
     CONSTRAINT FkPozisyonDepartman FOREIGN KEY (DepartmanId)
         REFERENCES Departman(DepartmanId)
-);
-GO
-
--- ============================================================
+);'';
+EXEC sys.sp_executesql N''-- ============================================================
 -- 3. Vardiya
 -- ============================================================
 CREATE TABLE Vardiya
@@ -82,10 +53,8 @@ CREATE TABLE Vardiya
     Pazar            BIT           NOT NULL DEFAULT 0,
     AktifMi          BIT           NOT NULL DEFAULT 1,
     OlusturmaTarihi  DATETIME      NOT NULL DEFAULT GETDATE()
-);
-GO
-
--- ============================================================
+);'';
+EXEC sys.sp_executesql N''-- ============================================================
 -- 4. Personel
 -- ============================================================
 CREATE TABLE Personel
@@ -115,10 +84,8 @@ CREATE TABLE Personel
         REFERENCES Pozisyon(PozisyonId),
     CONSTRAINT FkPersonelVardiya   FOREIGN KEY (VardiyaId)
         REFERENCES Vardiya(VardiyaId)
-);
-GO
-
--- ============================================================
+);'';
+EXEC sys.sp_executesql N''-- ============================================================
 -- 5. Kullanici
 -- ============================================================
 CREATE TABLE Kullanici
@@ -129,14 +96,12 @@ CREATE TABLE Kullanici
     Ad              NVARCHAR(50)  NOT NULL,
     Soyad           NVARCHAR(50)  NOT NULL,
     Email           NVARCHAR(100) NULL,
-    Rol             NVARCHAR(20)  NOT NULL DEFAULT 'Kullanici',
+    Rol             NVARCHAR(20)  NOT NULL DEFAULT ''''Kullanici'''',
     AktifMi         BIT           NOT NULL DEFAULT 1,
     SonGirisTarihi  DATETIME      NULL,
     OlusturmaTarihi DATETIME      NOT NULL DEFAULT GETDATE()
-);
-GO
-
--- ============================================================
+);'';
+EXEC sys.sp_executesql N''-- ============================================================
 -- 6. GirisKayit
 -- ============================================================
 CREATE TABLE GirisKayit
@@ -159,10 +124,8 @@ CREATE TABLE GirisKayit
         REFERENCES Personel(PersonelId),
     CONSTRAINT FkGirisKayitKullanici FOREIGN KEY (KaydedenId)
         REFERENCES Kullanici(KullaniciId)
-);
-GO
-
--- ============================================================
+);'';
+EXEC sys.sp_executesql N''-- ============================================================
 -- 7. Devamsizlik
 -- ============================================================
 CREATE TABLE Devamsizlik
@@ -175,10 +138,8 @@ CREATE TABLE Devamsizlik
     OlusturmaTarihi   DATETIME      NOT NULL DEFAULT GETDATE(),
     CONSTRAINT FkDevamsizlikPersonel FOREIGN KEY (PersonelId)
         REFERENCES Personel(PersonelId)
-);
-GO
-
--- ============================================================
+);'';
+EXEC sys.sp_executesql N''-- ============================================================
 -- 8. IzinTuru
 -- ============================================================
 CREATE TABLE IzinTuru
@@ -187,10 +148,8 @@ CREATE TABLE IzinTuru
     TuruAdi     NVARCHAR(100) NOT NULL,
     Ucretli     BIT           NOT NULL DEFAULT 1,
     AktifMi     BIT           NOT NULL DEFAULT 1
-);
-GO
-
--- ============================================================
+);'';
+EXEC sys.sp_executesql N''-- ============================================================
 -- 9. Izin
 -- ============================================================
 CREATE TABLE Izin
@@ -202,7 +161,7 @@ CREATE TABLE Izin
     BitisTarihi      DATE          NOT NULL,
     ToplamGun        INT           NOT NULL,
     Aciklama         NVARCHAR(500) NULL,
-    Durum            NVARCHAR(20)  NOT NULL DEFAULT 'Beklemede',
+    Durum            NVARCHAR(20)  NOT NULL DEFAULT ''''Beklemede'''',
     OnayanKullaniciId INT          NULL,
     OnayTarihi       DATETIME      NULL,
     RedNedeni        NVARCHAR(500) NULL,
@@ -213,10 +172,8 @@ CREATE TABLE Izin
         REFERENCES IzinTuru(IzinTuruId),
     CONSTRAINT FkIzinKullanici FOREIGN KEY (OnayanKullaniciId)
         REFERENCES Kullanici(KullaniciId)
-);
-GO
-
--- ============================================================
+);'';
+EXEC sys.sp_executesql N''-- ============================================================
 -- 10. SistemLog
 -- ============================================================
 CREATE TABLE SistemLog
@@ -230,20 +187,16 @@ CREATE TABLE SistemLog
     LogTarihi    DATETIME       NOT NULL DEFAULT GETDATE(),
     CONSTRAINT FkSistemLogKullanici FOREIGN KEY (KullaniciId)
         REFERENCES Kullanici(KullaniciId)
-);
-GO
-
--- ============================================================
+);'';
+EXEC sys.sp_executesql N''-- ============================================================
 -- INDEXLER
 -- ============================================================
 CREATE INDEX IxGirisKayitPersonelTarih ON GirisKayit (PersonelId, KayitTarihi);
 CREATE INDEX IxGirisKayitTarih         ON GirisKayit (KayitTarihi);
 CREATE INDEX IxIzinPersonelId          ON Izin        (PersonelId, Durum);
-CREATE INDEX IxPersonelTcKimlik        ON Personel    (TcKimlikNo);
-GO
-
--- ============================================================
--- VIEW'LAR
+CREATE INDEX IxPersonelTcKimlik        ON Personel    (TcKimlikNo);'';
+EXEC sys.sp_executesql N''-- ============================================================
+-- VIEW''''LAR
 -- ============================================================
 
 -- vwPersonelDetay
@@ -253,7 +206,7 @@ CREATE VIEW vwPersonelDetay AS
         p.TcKimlikNo,
         p.Ad,
         p.Soyad,
-        p.Ad + ' ' + p.Soyad  AS AdSoyad,
+        p.Ad + '''' '''' + p.Soyad  AS AdSoyad,
         p.Cinsiyet,
         p.DogumTarihi,
         p.Telefon,
@@ -278,16 +231,14 @@ CREATE VIEW vwPersonelDetay AS
     FROM       Personel  p
     INNER JOIN Departman d  ON p.DepartmanId = d.DepartmanId
     INNER JOIN Pozisyon  pz ON p.PozisyonId  = pz.PozisyonId
-    INNER JOIN Vardiya   v  ON p.VardiyaId   = v.VardiyaId;
-GO
-
--- vwGunlukOzet
+    INNER JOIN Vardiya   v  ON p.VardiyaId   = v.VardiyaId;'';
+EXEC sys.sp_executesql N''-- vwGunlukOzet
 CREATE VIEW vwGunlukOzet AS
     SELECT
         g.GirisKayitId,
         g.KayitTarihi,
         p.PersonelId,
-        p.Ad + ' ' + p.Soyad  AS AdSoyad,
+        p.Ad + '''' '''' + p.Soyad  AS AdSoyad,
         d.DepartmanAdi,
         v.VardiyaAdi,
         v.BaslangicSaati       AS PlanlananGiris,
@@ -304,82 +255,193 @@ CREATE VIEW vwGunlukOzet AS
     FROM       GirisKayit g
     INNER JOIN Personel   p ON g.PersonelId  = p.PersonelId
     INNER JOIN Departman  d ON p.DepartmanId = d.DepartmanId
-    INNER JOIN Vardiya    v ON p.VardiyaId   = v.VardiyaId;
-GO
-
--- vwIzinOzet
+    INNER JOIN Vardiya    v ON p.VardiyaId   = v.VardiyaId;'';
+EXEC sys.sp_executesql N''-- vwIzinOzet
 CREATE VIEW vwIzinOzet AS
     SELECT
         p.PersonelId,
-        p.Ad + ' ' + p.Soyad  AS AdSoyad,
+        p.Ad + '''' '''' + p.Soyad  AS AdSoyad,
         p.YillikIzinHakki,
         ISNULL(SUM(
-            CASE WHEN it.TuruAdi = N'Yıllık İzin'
-                  AND i.Durum   = 'Onaylı'
+            CASE WHEN it.TuruAdi = N''''Yıllık İzin''''
+                  AND i.Durum   = ''''Onaylı''''
                   AND YEAR(i.BaslangicTarihi) = YEAR(GETDATE())
                  THEN i.ToplamGun ELSE 0 END), 0) AS KullanilanYillikIzin,
         p.YillikIzinHakki -
         ISNULL(SUM(
-            CASE WHEN it.TuruAdi = N'Yıllık İzin'
-                  AND i.Durum   = 'Onaylı'
+            CASE WHEN it.TuruAdi = N''''Yıllık İzin''''
+                  AND i.Durum   = ''''Onaylı''''
                   AND YEAR(i.BaslangicTarihi) = YEAR(GETDATE())
                  THEN i.ToplamGun ELSE 0 END), 0) AS KalanYillikIzin
     FROM       Personel  p
     LEFT JOIN  Izin      i  ON p.PersonelId  = i.PersonelId
     LEFT JOIN  IzinTuru  it ON i.IzinTuruId  = it.IzinTuruId
     WHERE p.AktifMi = 1
-    GROUP BY p.PersonelId, p.Ad, p.Soyad, p.YillikIzinHakki;
-GO
-
--- ============================================================
+    GROUP BY p.PersonelId, p.Ad, p.Soyad, p.YillikIzinHakki;'';
+EXEC sys.sp_executesql N''-- ============================================================
 -- ÖRNEK VERİLER
 -- ============================================================
 
 INSERT INTO Departman (DepartmanAdi, Aciklama) VALUES
-(N'Bilgi Teknolojileri', N'IT departmanı'),
-(N'İnsan Kaynakları',    N'IK departmanı'),
-(N'Muhasebe',            N'Muhasebe departmanı'),
-(N'Üretim',              N'Üretim departmanı'),
-(N'Satış',               N'Satış departmanı');
-GO
-
-INSERT INTO Pozisyon (DepartmanId, PozisyonAdi) VALUES
-(1, N'Yazılım Geliştirici'),
-(1, N'Sistem Yöneticisi'),
-(2, N'IK Uzmanı'),
-(2, N'IK Müdürü'),
-(3, N'Muhasebe Uzmanı'),
-(4, N'Üretim Operatörü'),
-(5, N'Satış Temsilcisi');
-GO
-
-INSERT INTO Vardiya (VardiyaAdi, BaslangicSaati, BitisSaati, MolaDakika, Cumartesi, Pazar) VALUES
-(N'Sabah Vardiyası', '08:00', '17:00', 60, 0, 0),
-(N'Akşam Vardiyası', '16:00', '00:00', 30, 0, 0),
-(N'Gece Vardiyası',  '00:00', '08:00', 30, 1, 1),
-(N'Esnek Vardiya',   '09:00', '18:00', 60, 0, 0);
-GO
-
-INSERT INTO IzinTuru (TuruAdi, Ucretli) VALUES
-(N'Yıllık İzin',   1),
-(N'Mazeret İzni',  1),
-(N'Hastalık İzni', 1),
-(N'Ücretsiz İzin', 0),
-(N'Doğum İzni',    1),
-(N'Ölüm İzni',     1);
-GO
-
--- Admin: admin / Admin123
+(N''''Bilgi Teknolojileri'''', N''''IT departmanı''''),
+(N''''İnsan Kaynakları'''',    N''''IK departmanı''''),
+(N''''Muhasebe'''',            N''''Muhasebe departmanı''''),
+(N''''Üretim'''',              N''''Üretim departmanı''''),
+(N''''Satış'''',               N''''Satış departmanı'''');'';
+EXEC sys.sp_executesql N''INSERT INTO Pozisyon (DepartmanId, PozisyonAdi) VALUES
+(1, N''''Yazılım Geliştirici''''),
+(1, N''''Sistem Yöneticisi''''),
+(2, N''''IK Uzmanı''''),
+(2, N''''IK Müdürü''''),
+(3, N''''Muhasebe Uzmanı''''),
+(4, N''''Üretim Operatörü''''),
+(5, N''''Satış Temsilcisi'''');'';
+EXEC sys.sp_executesql N''INSERT INTO Vardiya (VardiyaAdi, BaslangicSaati, BitisSaati, MolaDakika, Cumartesi, Pazar) VALUES
+(N''''Sabah Vardiyası'''', ''''08:00'''', ''''17:00'''', 60, 0, 0),
+(N''''Akşam Vardiyası'''', ''''16:00'''', ''''00:00'''', 30, 0, 0),
+(N''''Gece Vardiyası'''',  ''''00:00'''', ''''08:00'''', 30, 1, 1),
+(N''''Esnek Vardiya'''',   ''''09:00'''', ''''18:00'''', 60, 0, 0);'';
+EXEC sys.sp_executesql N''INSERT INTO IzinTuru (TuruAdi, Ucretli) VALUES
+(N''''Yıllık İzin'''',   1),
+(N''''Mazeret İzni'''',  1),
+(N''''Hastalık İzni'''', 1),
+(N''''Ücretsiz İzin'''', 0),
+(N''''Doğum İzni'''',    1),
+(N''''Ölüm İzni'''',     1);'';
+EXEC sys.sp_executesql N''-- Admin: admin / Admin123
 INSERT INTO Kullanici (KullaniciAdi, Sifre, Ad, Soyad, Email, Rol)
-VALUES ('admin', 'Admin123', N'Sistem', N'Yöneticisi', 'admin@sirket.com', 'Admin');
-GO
+VALUES (''''admin'''', ''''Admin123'''', N''''Sistem'''', N''''Yöneticisi'''', ''''admin@sirket.com'''', ''''Admin'''');'';
+EXEC sys.sp_executesql N''PRINT ''''====================================================='''';
+PRINT '''' PersonelTakipV090Db başarıyla oluşturuldu!'''';
+PRINT '''' Admin: admin / Admin123'''';
+PRINT ''''====================================================='''';'';
+EXEC sys.sp_executesql N''-- Mevcut veritabanını SSMS açılır listesinden seçin; dosyanın tamamını çalıştırın.
+-- Bir hata oluşursa transaction geri alınır; hiçbir kayıt otomatik silinmez.
+IF OBJECT_ID(N''''dbo.Personel'''', N''''U'''') IS NULL OR OBJECT_ID(N''''dbo.Kullanici'''', N''''U'''') IS NULL
+  OR COL_LENGTH(N''''dbo.GirisKayit'''', N''''KayitTarihi'''') IS NULL
+  THROW 51030, N''''Bu dosya mevcut PersonelTakipV090Db şeması içindir. SSMS içinde doğru veritabanını seçin.'''', 1;
+SET XACT_ABORT ON;
+BEGIN TRY
+    BEGIN TRANSACTION;
+    EXEC sys.sp_executesql N''''-- SSMS''''''''te güncellenecek mevcut veritabanını seçerek dosyanın tamamını çalıştırın.
+-- İşlem kayıt silmez. Mükerrer girişler varsa önce inceleme gerektirir.
+SET XACT_ABORT ON;'''';
+    EXEC sys.sp_executesql N''''IF OBJECT_ID(N''''''''dbo.Personel'''''''',N''''''''U'''''''') IS NULL OR OBJECT_ID(N''''''''dbo.GirisKayit'''''''',N''''''''U'''''''') IS NULL
+    THROW 51000,N''''''''Önce doğru personel veritabanını seçin.'''''''',1;
+IF EXISTS(SELECT 1 FROM dbo.GirisKayit GROUP BY PersonelId,KayitTarihi HAVING COUNT(*)>1)
+    THROW 51001,N''''''''Aynı personel ve gün için mükerrer girişler mevcut. Hiçbir kayıt silinmedi; önce mükerrerleri inceleyin.'''''''',1;
+IF EXISTS(SELECT 1 FROM dbo.GirisKayit WHERE CikisSaati IS NULL GROUP BY PersonelId HAVING COUNT(*)>1)
+    THROW 51002,N''''''''Aynı personelin birden fazla açık girişi mevcut. Hiçbir kayıt silinmedi; önce açık kayıtları inceleyin.'''''''',1;
+IF COL_LENGTH(N''''''''dbo.GirisKayit'''''''',N''''''''PlanlananGirisZamani'''''''') IS NULL
+    ALTER TABLE dbo.GirisKayit ADD PlanlananGirisZamani datetime NULL,PlanlananCikisZamani datetime NULL,
+        PlanlananMolaDakika int NULL,VardiyaAdiKayit nvarchar(100) NULL;
+IF COL_LENGTH(N''''''''dbo.Izin'''''''',N''''''''IptalEdenKullaniciId'''''''') IS NULL
+    ALTER TABLE dbo.Izin ADD IptalEdenKullaniciId int NULL,IptalTarihi datetime NULL;'''';
+    EXEC sys.sp_executesql N''''-- Eski kayıtlarda geçmiş plan bilinmediğinden güncelleme anındaki vardiya kullanılır.
+-- Yeni girişlerin planı uygulama tarafından kayıt anında saklanır.
+UPDATE g SET
+    PlanlananGirisZamani=DATEADD(second,DATEDIFF(second,CAST(''''''''00:00'''''''' AS time),v.BaslangicSaati),CAST(g.KayitTarihi AS datetime)),
+    PlanlananCikisZamani=DATEADD(day,CASE WHEN v.BitisSaati<=v.BaslangicSaati THEN 1 ELSE 0 END,
+        DATEADD(second,DATEDIFF(second,CAST(''''''''00:00'''''''' AS time),v.BitisSaati),CAST(g.KayitTarihi AS datetime))),
+    PlanlananMolaDakika=v.MolaDakika,VardiyaAdiKayit=v.VardiyaAdi
+FROM dbo.GirisKayit g JOIN dbo.Personel p ON p.PersonelId=g.PersonelId JOIN dbo.Vardiya v ON v.VardiyaId=p.VardiyaId
+WHERE g.PlanlananGirisZamani IS NULL;
+IF NOT EXISTS(SELECT 1 FROM sys.indexes WHERE object_id=OBJECT_ID(N''''''''dbo.GirisKayit'''''''') AND name=N''''''''UX_GirisKayit_PersonelGun'''''''')
+    CREATE UNIQUE INDEX UX_GirisKayit_PersonelGun ON dbo.GirisKayit(PersonelId,KayitTarihi);
+IF NOT EXISTS(SELECT 1 FROM sys.indexes WHERE object_id=OBJECT_ID(N''''''''dbo.GirisKayit'''''''') AND name=N''''''''UX_GirisKayit_Acik'''''''')
+    CREATE UNIQUE INDEX UX_GirisKayit_Acik ON dbo.GirisKayit(PersonelId) WHERE CikisSaati IS NULL;
+IF NOT EXISTS(SELECT 1 FROM sys.foreign_keys WHERE name=N''''''''FK_Izin_IptalEden'''''''')
+    ALTER TABLE dbo.Izin ADD CONSTRAINT FK_Izin_IptalEden FOREIGN KEY(IptalEdenKullaniciId) REFERENCES dbo.Kullanici(KullaniciId);'''';
+    EXEC sys.sp_executesql N''''CREATE OR ALTER VIEW dbo.vwGunlukOzet AS
+SELECT g.GirisKayitId,g.KayitTarihi,p.PersonelId,p.Ad+'''''''' ''''''''+p.Soyad AS AdSoyad,d.DepartmanAdi,
+    COALESCE(g.VardiyaAdiKayit,v.VardiyaAdi) AS VardiyaAdi,
+    CAST(g.PlanlananGirisZamani AS time) AS PlanlananGiris,CAST(g.PlanlananCikisZamani AS time) AS PlanlananCikis,
+    g.GirisSaati,g.CikisSaati,g.GirisZamani,g.CikisZamani,g.CalismaDakika,g.MesaiDakika,g.GecGeldiMi,g.ErkenCiktiMi,g.Aciklama
+FROM dbo.GirisKayit g JOIN dbo.Personel p ON p.PersonelId=g.PersonelId
+JOIN dbo.Departman d ON d.DepartmanId=p.DepartmanId JOIN dbo.Vardiya v ON v.VardiyaId=p.VardiyaId;'''';
+    EXEC sys.sp_executesql N''''CREATE OR ALTER VIEW dbo.vwIzinOzet AS
+SELECT p.PersonelId,p.Ad+'''''''' ''''''''+p.Soyad AS AdSoyad,p.YillikIzinHakki,
+    ISNULL(x.Kullanilan,0) AS KullanilanYillikIzin,p.YillikIzinHakki-ISNULL(x.Kullanilan,0) AS KalanYillikIzin
+FROM dbo.Personel p OUTER APPLY
+(
+    SELECT SUM(DATEDIFF(day,
+        CASE WHEN i.BaslangicTarihi<DATEFROMPARTS(YEAR(GETDATE()),1,1) THEN DATEFROMPARTS(YEAR(GETDATE()),1,1) ELSE i.BaslangicTarihi END,
+        CASE WHEN i.BitisTarihi>DATEFROMPARTS(YEAR(GETDATE()),12,31) THEN DATEFROMPARTS(YEAR(GETDATE()),12,31) ELSE i.BitisTarihi END)+1) AS Kullanilan
+    FROM dbo.Izin i JOIN dbo.IzinTuru it ON it.IzinTuruId=i.IzinTuruId
+    WHERE i.PersonelId=p.PersonelId AND i.Durum=N''''''''Onaylı'''''''' AND it.TuruAdi=N''''''''Yıllık İzin''''''''
+      AND i.BitisTarihi>=DATEFROMPARTS(YEAR(GETDATE()),1,1) AND i.BaslangicTarihi<=DATEFROMPARTS(YEAR(GETDATE()),12,31)
+) x;'''';
+    EXEC sys.sp_executesql N''''CREATE OR ALTER FUNCTION dbo.fnDevamsizlik(@Bas date,@Bit date,@Simdi datetime)
+RETURNS TABLE AS RETURN
+(
+    WITH Tarihler AS
+    (
+        SELECT @Bas AS Tarih WHERE @Bas<=@Bit
+        UNION ALL SELECT DATEADD(day,1,Tarih) FROM Tarihler WHERE Tarih<@Bit
+    ), Beklenen AS
+    (
+        SELECT p.PersonelId,p.Ad+'''''''' ''''''''+p.Soyad AS PersonelAdSoyad,d.DepartmanAdi,t.Tarih,
+            DATEADD(day,CASE WHEN v.BitisSaati<=v.BaslangicSaati THEN 1 ELSE 0 END,
+                DATEADD(second,DATEDIFF(second,CAST(''''''''00:00'''''''' AS time),v.BitisSaati),CAST(t.Tarih AS datetime))) AS PlanlananBitis
+        FROM Tarihler t JOIN dbo.Personel p ON p.IseGirisTarihi<=t.Tarih
+            AND (p.IstenCikisTarihi IS NULL OR p.IstenCikisTarihi>=t.Tarih)
+            AND (p.AktifMi=1 OR p.IstenCikisTarihi IS NOT NULL)
+        JOIN dbo.Vardiya v ON v.VardiyaId=p.VardiyaId JOIN dbo.Departman d ON d.DepartmanId=p.DepartmanId
+        WHERE CASE ((DATEDIFF(day,CONVERT(date,''''''''19000101''''''''),t.Tarih)%7)+7)%7
+            WHEN 0 THEN v.Pazartesi WHEN 1 THEN v.Sali WHEN 2 THEN v.Carsamba WHEN 3 THEN v.Persembe
+            WHEN 4 THEN v.Cuma WHEN 5 THEN v.Cumartesi ELSE v.Pazar END=1
+    ), Otomatik AS
+    (
+        SELECT b.* FROM Beklenen b WHERE b.PlanlananBitis<=@Simdi
+        AND NOT EXISTS(SELECT 1 FROM dbo.GirisKayit g WHERE g.PersonelId=b.PersonelId AND g.KayitTarihi=b.Tarih AND g.GirisZamani IS NOT NULL)
+        AND NOT EXISTS(SELECT 1 FROM dbo.Izin i WHERE i.PersonelId=b.PersonelId AND i.Durum=N''''''''Onaylı'''''''' AND b.Tarih BETWEEN i.BaslangicTarihi AND i.BitisTarihi)
+    )
+    -- Manuel açıklamalar korunur; aynı personel/gün otomatik hesapta ikinci kez sayılmaz.
+    SELECT dv.DevamsizlikId,dv.PersonelId,p.Ad+'''''''' ''''''''+p.Soyad AS PersonelAdSoyad,d.DepartmanAdi,
+        dv.DevamsizlikTarihi,dv.Mazeret,dv.Aciklama
+    FROM dbo.Devamsizlik dv JOIN dbo.Personel p ON p.PersonelId=dv.PersonelId JOIN dbo.Departman d ON d.DepartmanId=p.DepartmanId
+    WHERE dv.DevamsizlikTarihi BETWEEN @Bas AND @Bit
+    UNION ALL
+    SELECT CAST(NULL AS int),o.PersonelId,o.PersonelAdSoyad,o.DepartmanAdi,o.Tarih,
+        CAST(NULL AS nvarchar(500)),CAST(N''''''''Vardiya tamamlandı; giriş veya onaylı izin bulunamadı.'''''''' AS nvarchar(500))
+    FROM Otomatik o WHERE NOT EXISTS(SELECT 1 FROM dbo.Devamsizlik dv WHERE dv.PersonelId=o.PersonelId AND dv.DevamsizlikTarihi=o.Tarih)
+);'''';
 
-PRINT '=====================================================';
-PRINT ' PersonelTakipDb başarıyla oluşturuldu!';
-PRINT ' Admin: admin / Admin123';
-PRINT '=====================================================';
-GO
-IF @@TRANCOUNT > 0 COMMIT TRANSACTION;
-GO
-SET NOEXEC OFF;
-GO
+    -- Geçersiz mevcut veri varsa tüm güncelleme durur; kayıtlar otomatik düzeltilmez veya silinmez.
+    IF NOT EXISTS(SELECT 1 FROM sys.check_constraints WHERE name=N''''CK_Personel_BilgilerV090'''')
+      ALTER TABLE dbo.Personel WITH CHECK ADD CONSTRAINT CK_Personel_BilgilerV090 CHECK
+      (LEN(LTRIM(RTRIM(Ad)))>0 AND LEN(LTRIM(RTRIM(Soyad)))>0 AND LEN(TcKimlikNo)=11
+       AND TcKimlikNo COLLATE Latin1_General_100_BIN2 NOT LIKE ''''%[^0-9]%'''' AND YillikIzinHakki>=0
+       AND (DogumTarihi IS NULL OR DogumTarihi<=IseGirisTarihi)
+       AND (IstenCikisTarihi IS NULL OR IstenCikisTarihi>=IseGirisTarihi));
+    IF NOT EXISTS(SELECT 1 FROM sys.check_constraints WHERE name=N''''CK_Vardiya_SureV090'''')
+      ALTER TABLE dbo.Vardiya WITH CHECK ADD CONSTRAINT CK_Vardiya_SureV090 CHECK
+      (LEN(LTRIM(RTRIM(VardiyaAdi)))>0 AND BaslangicSaati<>BitisSaati AND MolaDakika>=0
+       AND MolaDakika*60 < (DATEDIFF(second,BaslangicSaati,BitisSaati)+86400)%86400
+       AND (CONVERT(int,Pazartesi)+CONVERT(int,Sali)+CONVERT(int,Carsamba)+CONVERT(int,Persembe)
+            +CONVERT(int,Cuma)+CONVERT(int,Cumartesi)+CONVERT(int,Pazar))>0);
+    IF NOT EXISTS(SELECT 1 FROM sys.check_constraints WHERE name=N''''CK_Izin_TarihlerV090'''')
+      ALTER TABLE dbo.Izin WITH CHECK ADD CONSTRAINT CK_Izin_TarihlerV090 CHECK
+      (BitisTarihi>=BaslangicTarihi AND ToplamGun=DATEDIFF(day,BaslangicTarihi,BitisTarihi)+1
+       AND Durum IN(N''''Beklemede'''',N''''Onaylı'''',N''''Reddedildi'''',N''''İptal Edildi''''));
+    IF NOT EXISTS(SELECT 1 FROM sys.check_constraints WHERE name=N''''CK_GirisKayit_SureV090'''')
+      ALTER TABLE dbo.GirisKayit WITH CHECK ADD CONSTRAINT CK_GirisKayit_SureV090 CHECK
+      ((CikisZamani IS NULL OR (GirisZamani IS NOT NULL AND CikisZamani>=GirisZamani))
+       AND (CalismaDakika IS NULL OR CalismaDakika>=0) AND (MesaiDakika IS NULL OR MesaiDakika>=0));
+    IF NOT EXISTS(SELECT 1 FROM sys.indexes WHERE object_id=OBJECT_ID(N''''dbo.Pozisyon'''') AND name=N''''UX_Pozisyon_DepartmanV090'''')
+      CREATE UNIQUE INDEX UX_Pozisyon_DepartmanV090 ON dbo.Pozisyon(PozisyonId,DepartmanId);
+    IF NOT EXISTS(SELECT 1 FROM sys.foreign_keys WHERE name=N''''FK_Personel_PozisyonDepartmanV090'''')
+      ALTER TABLE dbo.Personel WITH CHECK ADD CONSTRAINT FK_Personel_PozisyonDepartmanV090
+      FOREIGN KEY(PozisyonId,DepartmanId) REFERENCES dbo.Pozisyon(PozisyonId,DepartmanId);
+    COMMIT TRANSACTION;
+END TRY
+BEGIN CATCH
+    IF XACT_STATE() <> 0 ROLLBACK TRANSACTION;
+    THROW;
+END CATCH;'';
+ COMMIT TRANSACTION;
+END TRY
+BEGIN CATCH
+ IF XACT_STATE()<>0 ROLLBACK TRANSACTION;
+ THROW;
+END CATCH;';

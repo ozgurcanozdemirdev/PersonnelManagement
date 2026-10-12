@@ -1,11 +1,14 @@
 # Changelog
 
-## 0.8.0
+## 0.9.0
 
-- Initial release: personnel records, shifts, attendance, leave requests and reports.
-- PersonnelManagement namespace and 0.8.0 assembly version.
-- SQL Server Authentication with encrypted local connection settings.
-- Empty connection defaults and login fields.
-- Database setup stops when the target database already exists.
-- English and Turkish setup guides, MIT license and Git ignore rules.
-- Connection settings can be updated with Windows PowerShell 5.1.
+- Improve attendance calculations, overnight checkout and duplicate-entry handling.
+- Store the shift plan used when an attendance entry is created.
+- Validate personnel assignments, leave dates, overlapping requests and annual leave allowance.
+- Correct report calculations, XLSX/CSV export and print pagination.
+- Preserve user login, role management and database logging.
+- Match attendance timestamps to SQL datetime precision for immediate checkout.
+- Add version-specific SQL Authentication settings and regression tests.
+- Locate MSBuild automatically in the test runner.
+- Include English and Turkish setup guides and an MIT license.
+- Support updating encrypted connection settings in Windows PowerShell 5.1.

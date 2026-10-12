@@ -1,4 +1,4 @@
-using PersonnelManagement.DAL;
+﻿using PersonnelManagement.DAL;
 using PersonnelManagement.Models;
 using System;
 using System.Collections.Generic;
@@ -11,55 +11,84 @@ namespace PersonnelManagement.DAL
     public List<Departman> TumunuGetir(bool sadeceAktif = true)
     {
       var liste = new List<Departman>();
-      string sql = sadeceAktif
-          ? "SELECT * FROM Departman WHERE AktifMi = 1 ORDER BY DepartmanAdi"
-          : "SELECT * FROM Departman ORDER BY DepartmanAdi";
-
-      var cmd = new SqlCommand(sql, SqlDBConnection.GetConnection());
-      using (var r = cmd.ExecuteReader())
-        while (r.Read())
-          liste.Add(new Departman
-          {
-            DepartmanId = Convert.ToInt32(r["DepartmanId"]),
-            DepartmanAdi = r["DepartmanAdi"].ToString(),
-            Aciklama = r["Aciklama"] == DBNull.Value ? null : r["Aciklama"].ToString(),
-            AktifMi = Convert.ToBoolean(r["AktifMi"]),
-            OlusturmaTarihi = Convert.ToDateTime(r["OlusturmaTarihi"])
-          });
-      return liste;
+      string sql = sadeceAktif ? "SELECT * FROM Departman WHERE AktifMi = 1 ORDER BY DepartmanAdi" : "SELECT * FROM Departman ORDER BY DepartmanAdi";
+      using (var cmd = new SqlCommand(sql, SqlDBConnection.GetConnection()))
+      {
+        using (var r = cmd.ExecuteReader())
+          while (r.Read())
+            liste.Add(new Departman { DepartmanId = Convert.ToInt32(r["DepartmanId"]), DepartmanAdi = r["DepartmanAdi"].ToString(), Aciklama = r["Aciklama"] == DBNull.Value ? null : r["Aciklama"].ToString(), AktifMi = Convert.ToBoolean(r["AktifMi"]), OlusturmaTarihi = Convert.ToDateTime(r["OlusturmaTarihi"]) });
+        return liste;
+      }
     }
 
     public bool Kaydet(Departman d)
     {
-      string sql = "INSERT INTO Departman (DepartmanAdi, Aciklama) VALUES (@Adi, @Aciklama)";
-      var cmd = new SqlCommand(sql, SqlDBConnection.GetConnection());
-      cmd.Parameters.AddWithValue("@Adi", d.DepartmanAdi);
-      cmd.Parameters.AddWithValue("@Aciklama", (object)d.Aciklama ?? DBNull.Value);
-      bool ok = cmd.ExecuteNonQuery() > 0;
-      if (ok) SistemLogger.Log("Insert", "Departman", null, d.DepartmanAdi);
-      return ok;
+      return DatabaseTransaction.Execute(tx =>
+      {
+        if (d == null || string.IsNullOrWhiteSpace(d.DepartmanAdi) || d.DepartmanAdi.Trim().Length > 100 || (d.Aciklama ?? "").Length > 255)
+          throw new ArgumentException("Departman adı zorunludur; ad 100, açıklama 255 karakteri aşamaz.");
+        string sql = "INSERT INTO Departman (DepartmanAdi, Aciklama) VALUES (@Adi, @Aciklama)";
+        using (var cmd = new SqlCommand(sql, SqlDBConnection.GetConnection(), tx))
+        {
+          cmd.Parameters.AddWithValue("@Adi", d.DepartmanAdi);
+          cmd.Parameters.AddWithValue("@Aciklama", (object)d.Aciklama ?? DBNull.Value);
+          bool ok = cmd.ExecuteNonQuery() > 0;
+          if (ok)
+            SistemLogger.Log("Insert", "Departman", null, d.DepartmanAdi, transaction: tx);
+          return ok;
+        }
+      });
     }
 
     public bool Guncelle(Departman d)
     {
-      string sql = "UPDATE Departman SET DepartmanAdi = @Adi, Aciklama = @Aciklama WHERE DepartmanId = @Id";
-      var cmd = new SqlCommand(sql, SqlDBConnection.GetConnection());
-      cmd.Parameters.AddWithValue("@Adi", d.DepartmanAdi);
-      cmd.Parameters.AddWithValue("@Aciklama", (object)d.Aciklama ?? DBNull.Value);
-      cmd.Parameters.AddWithValue("@Id", d.DepartmanId);
-      bool ok = cmd.ExecuteNonQuery() > 0;
-      if (ok) SistemLogger.Log("Update", "Departman", d.DepartmanId, d.DepartmanAdi);
-      return ok;
+      return DatabaseTransaction.Execute(tx =>
+      {
+        if (d == null || string.IsNullOrWhiteSpace(d.DepartmanAdi) || d.DepartmanAdi.Trim().Length > 100 || (d.Aciklama ?? "").Length > 255)
+          throw new ArgumentException("Departman adı zorunludur; ad 100, açıklama 255 karakteri aşamaz.");
+        string sql = "UPDATE Departman SET DepartmanAdi = @Adi, Aciklama = @Aciklama WHERE DepartmanId = @Id";
+        using (var cmd = new SqlCommand(sql, SqlDBConnection.GetConnection(), tx))
+        {
+          cmd.Parameters.AddWithValue("@Adi", d.DepartmanAdi);
+          cmd.Parameters.AddWithValue("@Aciklama", (object)d.Aciklama ?? DBNull.Value);
+          cmd.Parameters.AddWithValue("@Id", d.DepartmanId);
+          bool ok = cmd.ExecuteNonQuery() > 0;
+          if (ok)
+            SistemLogger.Log("Update", "Departman", d.DepartmanId, d.DepartmanAdi, transaction: tx);
+          return ok;
+        }
+      });
     }
 
     public bool Sil(int departmanId)
     {
-      string sql = "UPDATE Departman SET AktifMi = 0 WHERE DepartmanId = @Id";
-      var cmd = new SqlCommand(sql, SqlDBConnection.GetConnection());
-      cmd.Parameters.AddWithValue("@Id", departmanId);
-      bool ok = cmd.ExecuteNonQuery() > 0;
-      if (ok) SistemLogger.Log("Delete", "Departman", departmanId);
-      return ok;
+      return DatabaseTransaction.Execute(tx =>
+      {
+        // Atama ile pasife alma aynı kaydı kilitler; eşzamanlı işlem tutarsızlık oluşturmaz.
+        using (var check = new SqlCommand("SELECT DepartmanId FROM dbo.Departman WITH (XLOCK,HOLDLOCK) WHERE DepartmanId=@Id", SqlDBConnection.GetConnection(), tx))
+        {
+          check.Parameters.AddWithValue("@Id", departmanId);
+          if (check.ExecuteScalar() == null)
+            return false;
+        }
+
+        using (var check = new SqlCommand("SELECT COUNT(*) FROM dbo.Personel WHERE DepartmanId=@Id AND AktifMi=1", SqlDBConnection.GetConnection(), tx))
+        {
+          check.Parameters.AddWithValue("@Id", departmanId);
+          if (Convert.ToInt32(check.ExecuteScalar()) != 0)
+            throw new InvalidOperationException("Aktif personelin kullandığı departman pasife alınamaz.");
+        }
+
+        string sql = "UPDATE Departman SET AktifMi = 0 WHERE DepartmanId = @Id";
+        using (var cmd = new SqlCommand(sql, SqlDBConnection.GetConnection(), tx))
+        {
+          cmd.Parameters.AddWithValue("@Id", departmanId);
+          bool ok = cmd.ExecuteNonQuery() > 0;
+          if (ok)
+            SistemLogger.Log("Delete", "Departman", departmanId, transaction: tx);
+          return ok;
+        }
+      });
     }
   }
 
@@ -71,53 +100,101 @@ namespace PersonnelManagement.DAL
     public List<Pozisyon> TumunuGetir(int? departmanId = null)
     {
       var liste = new List<Pozisyon>();
-      string sql = departmanId.HasValue
-          ? "SELECT * FROM Pozisyon WHERE AktifMi = 1 AND DepartmanId = @DepId ORDER BY PozisyonAdi"
-          : "SELECT * FROM Pozisyon WHERE AktifMi = 1 ORDER BY PozisyonAdi";
-
-      var cmd = new SqlCommand(sql, SqlDBConnection.GetConnection());
-      if (departmanId.HasValue)
-        cmd.Parameters.AddWithValue("@DepId", departmanId.Value);
-
-      using (var r = cmd.ExecuteReader())
-        while (r.Read())
-          liste.Add(new Pozisyon
-          {
-            PozisyonId = Convert.ToInt32(r["PozisyonId"]),
-            DepartmanId = Convert.ToInt32(r["DepartmanId"]),
-            PozisyonAdi = r["PozisyonAdi"].ToString(),
-            Aciklama = r["Aciklama"] == DBNull.Value ? null : r["Aciklama"].ToString(),
-            AktifMi = Convert.ToBoolean(r["AktifMi"])
-          });
-      return liste;
+      string sql = departmanId.HasValue ? "SELECT * FROM Pozisyon WHERE AktifMi = 1 AND DepartmanId = @DepId ORDER BY PozisyonAdi" : "SELECT * FROM Pozisyon WHERE AktifMi = 1 ORDER BY PozisyonAdi";
+      using (var cmd = new SqlCommand(sql, SqlDBConnection.GetConnection()))
+      {
+        if (departmanId.HasValue)
+          cmd.Parameters.AddWithValue("@DepId", departmanId.Value);
+        using (var r = cmd.ExecuteReader())
+          while (r.Read())
+            liste.Add(new Pozisyon { PozisyonId = Convert.ToInt32(r["PozisyonId"]), DepartmanId = Convert.ToInt32(r["DepartmanId"]), PozisyonAdi = r["PozisyonAdi"].ToString(), Aciklama = r["Aciklama"] == DBNull.Value ? null : r["Aciklama"].ToString(), AktifMi = Convert.ToBoolean(r["AktifMi"]) });
+        return liste;
+      }
     }
 
     public bool Kaydet(Pozisyon p)
     {
-      string sql = "INSERT INTO Pozisyon (DepartmanId, PozisyonAdi, Aciklama) VALUES (@DepId, @Adi, @Aciklama)";
-      var cmd = new SqlCommand(sql, SqlDBConnection.GetConnection());
-      cmd.Parameters.AddWithValue("@DepId", p.DepartmanId);
-      cmd.Parameters.AddWithValue("@Adi", p.PozisyonAdi);
-      cmd.Parameters.AddWithValue("@Aciklama", (object)p.Aciklama ?? DBNull.Value);
-      return cmd.ExecuteNonQuery() > 0;
+      return DatabaseTransaction.Execute(tx =>
+      {
+        if (p == null || string.IsNullOrWhiteSpace(p.PozisyonAdi) || p.PozisyonAdi.Trim().Length > 100 || (p.Aciklama ?? "").Length > 255)
+          throw new ArgumentException("Pozisyon adı zorunludur; ad 100, açıklama 255 karakteri aşamaz.");
+        using (var check = new SqlCommand("SELECT COUNT(*) FROM dbo.Departman WITH (HOLDLOCK) WHERE DepartmanId=@Id AND AktifMi=1", SqlDBConnection.GetConnection(), tx))
+        {
+          check.Parameters.AddWithValue("@Id", p.DepartmanId);
+          if (Convert.ToInt32(check.ExecuteScalar()) != 1)
+            throw new InvalidOperationException("Aktif departman seçilmelidir.");
+        }
+
+        string sql = "INSERT INTO Pozisyon (DepartmanId, PozisyonAdi, Aciklama) VALUES (@DepId, @Adi, @Aciklama)";
+        using (var cmd = new SqlCommand(sql, SqlDBConnection.GetConnection(), tx))
+        {
+          cmd.Parameters.AddWithValue("@DepId", p.DepartmanId);
+          cmd.Parameters.AddWithValue("@Adi", p.PozisyonAdi);
+          cmd.Parameters.AddWithValue("@Aciklama", (object)p.Aciklama ?? DBNull.Value);
+          bool ok = cmd.ExecuteNonQuery() > 0;
+          if (ok)
+            SistemLogger.Log("Insert", "Pozisyon", p.PozisyonId == 0 ? (int? )null : p.PozisyonId, p.PozisyonAdi, transaction: tx);
+          return ok;
+        }
+      });
     }
 
     public bool Guncelle(Pozisyon p)
     {
-      string sql = "UPDATE Pozisyon SET PozisyonAdi = @Adi, Aciklama = @Aciklama WHERE PozisyonId = @Id";
-      var cmd = new SqlCommand(sql, SqlDBConnection.GetConnection());
-      cmd.Parameters.AddWithValue("@Adi", p.PozisyonAdi);
-      cmd.Parameters.AddWithValue("@Aciklama", (object)p.Aciklama ?? DBNull.Value);
-      cmd.Parameters.AddWithValue("@Id", p.PozisyonId);
-      return cmd.ExecuteNonQuery() > 0;
+      return DatabaseTransaction.Execute(tx =>
+      {
+        if (p == null || string.IsNullOrWhiteSpace(p.PozisyonAdi) || p.PozisyonAdi.Trim().Length > 100 || (p.Aciklama ?? "").Length > 255)
+          throw new ArgumentException("Pozisyon adı zorunludur; ad 100, açıklama 255 karakteri aşamaz.");
+        using (var check = new SqlCommand("SELECT COUNT(*) FROM dbo.Departman WITH (HOLDLOCK) WHERE DepartmanId=@Id AND AktifMi=1", SqlDBConnection.GetConnection(), tx))
+        {
+          check.Parameters.AddWithValue("@Id", p.DepartmanId);
+          if (Convert.ToInt32(check.ExecuteScalar()) != 1)
+            throw new InvalidOperationException("Aktif departman seçilmelidir.");
+        }
+
+        string sql = "UPDATE Pozisyon SET PozisyonAdi = @Adi, Aciklama = @Aciklama WHERE PozisyonId = @Id";
+        using (var cmd = new SqlCommand(sql, SqlDBConnection.GetConnection(), tx))
+        {
+          cmd.Parameters.AddWithValue("@Adi", p.PozisyonAdi);
+          cmd.Parameters.AddWithValue("@Aciklama", (object)p.Aciklama ?? DBNull.Value);
+          cmd.Parameters.AddWithValue("@Id", p.PozisyonId);
+          bool ok = cmd.ExecuteNonQuery() > 0;
+          if (ok)
+            SistemLogger.Log("Update", "Pozisyon", p.PozisyonId == 0 ? (int? )null : p.PozisyonId, p.PozisyonAdi, transaction: tx);
+          return ok;
+        }
+      });
     }
 
     public bool Sil(int pozisyonId)
     {
-      string sql = "UPDATE Pozisyon SET AktifMi = 0 WHERE PozisyonId = @Id";
-      var cmd = new SqlCommand(sql, SqlDBConnection.GetConnection());
-      cmd.Parameters.AddWithValue("@Id", pozisyonId);
-      return cmd.ExecuteNonQuery() > 0;
+      return DatabaseTransaction.Execute(tx =>
+      {
+        // Atama ile pasife alma aynı kaydı kilitler; eşzamanlı işlem tutarsızlık oluşturmaz.
+        using (var check = new SqlCommand("SELECT PozisyonId FROM dbo.Pozisyon WITH (XLOCK,HOLDLOCK) WHERE PozisyonId=@Id", SqlDBConnection.GetConnection(), tx))
+        {
+          check.Parameters.AddWithValue("@Id", pozisyonId);
+          if (check.ExecuteScalar() == null)
+            return false;
+        }
+
+        using (var check = new SqlCommand("SELECT COUNT(*) FROM dbo.Personel WHERE PozisyonId=@Id AND AktifMi=1", SqlDBConnection.GetConnection(), tx))
+        {
+          check.Parameters.AddWithValue("@Id", pozisyonId);
+          if (Convert.ToInt32(check.ExecuteScalar()) != 0)
+            throw new InvalidOperationException("Aktif personelin kullandığı pozisyon pasife alınamaz.");
+        }
+
+        string sql = "UPDATE Pozisyon SET AktifMi = 0 WHERE PozisyonId = @Id";
+        using (var cmd = new SqlCommand(sql, SqlDBConnection.GetConnection(), tx))
+        {
+          cmd.Parameters.AddWithValue("@Id", pozisyonId);
+          bool ok = cmd.ExecuteNonQuery() > 0;
+          if (ok)
+            SistemLogger.Log("Delete", "Pozisyon", pozisyonId, transaction: tx);
+          return ok;
+        }
+      });
     }
   }
 
@@ -129,29 +206,33 @@ namespace PersonnelManagement.DAL
     public List<Vardiya> TumunuGetir(bool sadeceAktif = true)
     {
       var liste = new List<Vardiya>();
-      string sql = sadeceAktif
-          ? "SELECT * FROM Vardiya WHERE AktifMi = 1 ORDER BY VardiyaAdi"
-          : "SELECT * FROM Vardiya ORDER BY VardiyaAdi";
-
-      var cmd = new SqlCommand(sql, SqlDBConnection.GetConnection());
-      using (var r = cmd.ExecuteReader())
-        while (r.Read())
-          liste.Add(MapVardiya(r));
-      return liste;
+      string sql = sadeceAktif ? "SELECT * FROM Vardiya WHERE AktifMi = 1 ORDER BY VardiyaAdi" : "SELECT * FROM Vardiya ORDER BY VardiyaAdi";
+      using (var cmd = new SqlCommand(sql, SqlDBConnection.GetConnection()))
+      {
+        using (var r = cmd.ExecuteReader())
+          while (r.Read())
+            liste.Add(MapVardiya(r));
+        return liste;
+      }
     }
 
     public Vardiya IdIleGetir(int vardiyaId)
     {
       string sql = "SELECT * FROM Vardiya WHERE VardiyaId = @Id";
-      var cmd = new SqlCommand(sql, SqlDBConnection.GetConnection());
-      cmd.Parameters.AddWithValue("@Id", vardiyaId);
-      using (var r = cmd.ExecuteReader())
-        return r.Read() ? MapVardiya(r) : null;
+      using (var cmd = new SqlCommand(sql, SqlDBConnection.GetConnection()))
+      {
+        cmd.Parameters.AddWithValue("@Id", vardiyaId);
+        using (var r = cmd.ExecuteReader())
+          return r.Read() ? MapVardiya(r) : null;
+      }
     }
 
     public int Kaydet(Vardiya v)
     {
-      string sql = @"
+      return DatabaseTransaction.Execute(tx =>
+      {
+        EmployeeValidation.ValidateShift(v);
+        string sql = @"
                 INSERT INTO Vardiya
                     (VardiyaAdi, BaslangicSaati, BitisSaati, MolaDakika,
                      Pazartesi, Sali, Carsamba, Persembe, Cuma, Cumartesi, Pazar)
@@ -159,17 +240,22 @@ namespace PersonnelManagement.DAL
                     (@Adi, @Baslangic, @Bitis, @Mola,
                      @Pzt, @Sal, @Car, @Per, @Cum, @Cmt, @Paz);
                 SELECT SCOPE_IDENTITY();";
-
-      var cmd = new SqlCommand(sql, SqlDBConnection.GetConnection());
-      SetVardiyaParams(cmd, v);
-      int yeniId = Convert.ToInt32(cmd.ExecuteScalar());
-      SistemLogger.Log("Insert", "Vardiya", yeniId, v.VardiyaAdi);
-      return yeniId;
+        using (var cmd = new SqlCommand(sql, SqlDBConnection.GetConnection(), tx))
+        {
+          SetVardiyaParams(cmd, v);
+          int yeniId = Convert.ToInt32(cmd.ExecuteScalar());
+          SistemLogger.Log("Insert", "Vardiya", yeniId, v.VardiyaAdi, transaction: tx);
+          return yeniId;
+        }
+      });
     }
 
     public bool Guncelle(Vardiya v)
     {
-      string sql = @"
+      return DatabaseTransaction.Execute(tx =>
+      {
+        EmployeeValidation.ValidateShift(v);
+        string sql = @"
                 UPDATE Vardiya SET
                     VardiyaAdi     = @Adi,
                     BaslangicSaati = @Baslangic,
@@ -183,28 +269,54 @@ namespace PersonnelManagement.DAL
                     Cumartesi      = @Cmt,
                     Pazar          = @Paz
                 WHERE VardiyaId = @Id";
-
-      var cmd = new SqlCommand(sql, SqlDBConnection.GetConnection());
-      SetVardiyaParams(cmd, v);
-      cmd.Parameters.AddWithValue("@Id", v.VardiyaId);
-      bool ok = cmd.ExecuteNonQuery() > 0;
-      if (ok) SistemLogger.Log("Update", "Vardiya", v.VardiyaId, v.VardiyaAdi);
-      return ok;
+        using (var cmd = new SqlCommand(sql, SqlDBConnection.GetConnection(), tx))
+        {
+          SetVardiyaParams(cmd, v);
+          cmd.Parameters.AddWithValue("@Id", v.VardiyaId);
+          bool ok = cmd.ExecuteNonQuery() > 0;
+          if (ok)
+            SistemLogger.Log("Update", "Vardiya", v.VardiyaId, v.VardiyaAdi, transaction: tx);
+          return ok;
+        }
+      });
     }
 
     public bool Sil(int vardiyaId)
     {
-      string sql = "UPDATE Vardiya SET AktifMi = 0 WHERE VardiyaId = @Id";
-      var cmd = new SqlCommand(sql, SqlDBConnection.GetConnection());
-      cmd.Parameters.AddWithValue("@Id", vardiyaId);
-      return cmd.ExecuteNonQuery() > 0;
+      return DatabaseTransaction.Execute(tx =>
+      {
+        // Atama ile pasife alma aynı kaydı kilitler; eşzamanlı işlem tutarsızlık oluşturmaz.
+        using (var check = new SqlCommand("SELECT VardiyaId FROM dbo.Vardiya WITH (XLOCK,HOLDLOCK) WHERE VardiyaId=@Id", SqlDBConnection.GetConnection(), tx))
+        {
+          check.Parameters.AddWithValue("@Id", vardiyaId);
+          if (check.ExecuteScalar() == null)
+            return false;
+        }
+
+        using (var check = new SqlCommand("SELECT COUNT(*) FROM dbo.Personel WHERE VardiyaId=@Id AND AktifMi=1", SqlDBConnection.GetConnection(), tx))
+        {
+          check.Parameters.AddWithValue("@Id", vardiyaId);
+          if (Convert.ToInt32(check.ExecuteScalar()) != 0)
+            throw new InvalidOperationException("Aktif personelin kullandığı vardiya pasife alınamaz.");
+        }
+
+        string sql = "UPDATE Vardiya SET AktifMi = 0 WHERE VardiyaId = @Id";
+        using (var cmd = new SqlCommand(sql, SqlDBConnection.GetConnection(), tx))
+        {
+          cmd.Parameters.AddWithValue("@Id", vardiyaId);
+          bool ok = cmd.ExecuteNonQuery() > 0;
+          if (ok)
+            SistemLogger.Log("Delete", "Vardiya", vardiyaId, transaction: tx);
+          return ok;
+        }
+      });
     }
 
     private void SetVardiyaParams(SqlCommand cmd, Vardiya v)
     {
       cmd.Parameters.AddWithValue("@Adi", v.VardiyaAdi);
-      cmd.Parameters.AddWithValue("@Baslangic", v.BaslangicSaati.ToString(@"hh\:mm"));
-      cmd.Parameters.AddWithValue("@Bitis", v.BitisSaati.ToString(@"hh\:mm"));
+      cmd.Parameters.Add("@Baslangic", System.Data.SqlDbType.Time).Value = v.BaslangicSaati;
+      cmd.Parameters.Add("@Bitis", System.Data.SqlDbType.Time).Value = v.BitisSaati;
       cmd.Parameters.AddWithValue("@Mola", v.MolaDakika);
       cmd.Parameters.AddWithValue("@Pzt", v.Pazartesi);
       cmd.Parameters.AddWithValue("@Sal", v.Sali);

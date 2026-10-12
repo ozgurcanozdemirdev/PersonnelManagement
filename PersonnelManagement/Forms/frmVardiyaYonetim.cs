@@ -23,6 +23,9 @@ namespace PersonnelManagement.Forms
 
     private void frmVardiyaYonetim_Load(object sender, EventArgs e)
     {
+      try
+      {
+
       dtpBaslangicSaati.Format = DateTimePickerFormat.Custom;
       dtpBaslangicSaati.CustomFormat = "HH:mm";
       dtpBaslangicSaati.ShowUpDown = true;
@@ -36,6 +39,13 @@ namespace PersonnelManagement.Forms
 
       VardiyalariYukle();
       FormTemizle();
+    
+      }
+      catch (Exception ex)
+      {
+        MessageBox.Show("Ekran yüklenemedi: " + ex.Message, "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        Close();
+      }
     }
 
     private void VardiyalariYukle()
@@ -277,6 +287,12 @@ namespace PersonnelManagement.Forms
         return false;
       }
 
+      try { EmployeeValidation.ValidateShift(FormdenVardiyaOlustur()); }
+      catch (ArgumentException ex)
+      {
+        MessageBox.Show(ex.Message, "Eksik Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        return false;
+      }
       return true;
     }
 

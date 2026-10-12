@@ -8,11 +8,11 @@ namespace PersonnelManagement.DAL
 {
   public static class ConnectionSettings
   {
-    public const string EnvironmentVariable = "PERSONNELMANAGEMENT_V080_CONNECTION_STRING";
+    public const string EnvironmentVariable = "PERSONNELMANAGEMENT_V090_CONNECTION_STRING";
 
     public static string SettingsPath => Path.Combine(
         Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
-        "PersonnelManagement", "V0.8.0", "connection.dat");
+        "PersonnelManagement", "V0.9.0", "connection.dat");
 
     public static string Read()
     {

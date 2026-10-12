@@ -23,9 +23,11 @@ namespace PersonnelManagement.Forms
     private void frmAnaMenu_Load(object sender, EventArgs e)
     {
 
+      if (frmLogin.AktifKullanici == null) { Close(); return; }
       lblHosgeldin.Text = $"Hoş geldiniz,  {frmLogin.AktifKullanici.AdSoyad}";
 
-      _saatTimer = new Timer();
+      _saatTimer?.Dispose();
+      _saatTimer = new Timer(components ?? (components = new Container()));
       _saatTimer.Interval = 1000;
       _saatTimer.Tick += (s, ev) => SaatGuncelle();
       _saatTimer.Start();
@@ -33,7 +35,7 @@ namespace PersonnelManagement.Forms
 
       OzetYukle();
 
-      if (frmLogin.AktifKullanici.Rol != "Admin")
+      if (!string.Equals(frmLogin.AktifKullanici.Rol, "Admin", StringComparison.OrdinalIgnoreCase))
         btnRaporlar.Enabled = false;
     }
     private void SaatTimer_Tick(object sender, EventArgs e) => SaatGuncelle();
@@ -67,7 +69,6 @@ namespace PersonnelManagement.Forms
 
       if (sonuc == DialogResult.Yes)
       {
-        SistemLogger.Log("Logout", null, null, $"{frmLogin.AktifKullanici.KullaniciAdi} çıkış yaptı.");
         _saatTimer?.Stop();
         Application.Exit();
       }
@@ -112,13 +113,27 @@ namespace PersonnelManagement.Forms
         if (sonuc == DialogResult.No) { e.Cancel = true; return; }
 
         _saatTimer?.Stop();
-        Application.Exit();
+      }
+      if (!e.Cancel)
+      {
+        try { SistemLogger.Log("Logout", aciklama: "Oturum kapatıldı."); }
+        catch (Exception) { /* Bağlantı kopmuş olsa da uygulama kapatılabilir. */ }
+        SistemLogger.ClearKullanici();
       }
     }
     private void AcForm(Form form)
     {
-      form.FormClosed += (s, e) => OzetYukle();
-      form.Show();
+      foreach (Form acikForm in Application.OpenForms)
+      {
+        if (acikForm.GetType() == form.GetType())
+        {
+          form.Dispose();
+          acikForm.Activate();
+          return;
+        }
+      }
+      form.FormClosed += (s, e) => { if (!IsDisposed && !Disposing && Visible) OzetYukle(); };
+      form.Show(this);
     }
   }
 }

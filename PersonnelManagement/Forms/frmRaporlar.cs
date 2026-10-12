@@ -18,12 +18,15 @@ namespace PersonnelManagement.Forms
 
     private void frmRaporlar_Load(object sender, EventArgs e)
     {
+      try
+      {
+
       dtpRaporBaslangic.Value = new DateTime(DateTime.Today.Year, DateTime.Today.Month, 1);
       dtpRaporBitis.Value = DateTime.Today;
 
       var personeller = new List<Personel>();
       personeller.Add(new Personel { PersonelId = 0, Ad = "Tümü", Soyad = "" });
-      personeller.AddRange(_personelDal.TumunuGetir());
+      personeller.AddRange(_personelDal.TumunuGetir(false));
 
       cmbRaporPersonel.DataSource = personeller;
       cmbRaporPersonel.DisplayMember = "AdSoyad";
@@ -38,6 +41,13 @@ namespace PersonnelManagement.Forms
       cmbRaporTuru.SelectedIndex = 0;
 
       lblRaporTarih.Text = $"Aylık Rapor: {dtpRaporBaslangic.Value:MMMM yyyy}";
+    
+      }
+      catch (Exception ex)
+      {
+        MessageBox.Show("Ekran yüklenemedi: " + ex.Message, "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        Close();
+      }
     }
 
     private void btnRaporOlustur_Click(object sender, EventArgs e)
@@ -117,8 +127,8 @@ namespace PersonnelManagement.Forms
     {
       if (liste.Count == 0) { lblToplamMesai.Text = "—"; lblToplamDevamsizlik.Text = "—"; return; }
 
-      int toplamMesai = 0;
-      int toplamDevamsizlik = 0;
+      long toplamMesai = 0;
+      long toplamDevamsizlik = 0;
 
       foreach (var r in liste)
       {
@@ -126,8 +136,8 @@ namespace PersonnelManagement.Forms
         toplamDevamsizlik += r.ToplamDevamsizlik;
       }
 
-      int saat = toplamMesai / 60;
-      int dak = toplamMesai % 60;
+      long saat = toplamMesai / 60;
+      long dak = toplamMesai % 60;
       lblToplamMesai.Text = $"Toplam Mesai: {saat}s {dak}dk";
       lblToplamDevamsizlik.Text = $"Toplam Devamsızlık: {toplamDevamsizlik} gün";
     }
@@ -185,9 +195,7 @@ namespace PersonnelManagement.Forms
         int? personelId = SecilenPersonelId();
         var izinDal = new IzinDal();
 
-        List<Izin> liste = personelId.HasValue
-            ? izinDal.PersonelIzinleri(personelId.Value)
-            : izinDal.BekleyenIzinler();
+        List<Izin> liste = izinDal.TarihAraligindaGetir(dtpRaporBaslangic.Value.Date, dtpRaporBitis.Value.Date, personelId);
 
         dgvRapor.DataSource = null;
         dgvRapor.DataSource = liste;
@@ -204,7 +212,7 @@ namespace PersonnelManagement.Forms
 
     private void DgvIzinAyarla()
     {
-      string[] gizle = { "IzinId", "PersonelId", "IzinTuruId", "Aciklama", "OnayanKullaniciId", "OnayTarihi", "RedNedeni", "OlusturmaTarihi" };
+      string[] gizle = { "IzinId", "PersonelId", "IzinTuruId", "Aciklama", "OnayanKullaniciId", "OnayTarihi", "RedNedeni", "OlusturmaTarihi", "BaslangicTarihi", "BitisTarihi" };
       foreach (string s in gizle)
         if (dgvRapor.Columns[s] != null)
           dgvRapor.Columns[s].Visible = false;
@@ -223,32 +231,7 @@ namespace PersonnelManagement.Forms
       {
         int? personelId = SecilenPersonelId();
 
-        string sql = @"
-                    SELECT
-                        d.DevamsizlikId,
-                        d.PersonelId,
-                        p.Ad + ' ' + p.Soyad  AS PersonelAdSoyad,
-                        dep.DepartmanAdi,
-                        d.DevamsizlikTarihi,
-                        d.Mazeret,
-                        d.Aciklama
-                    FROM       Devamsizlik d
-                    INNER JOIN Personel    p   ON d.PersonelId  = p.PersonelId
-                    INNER JOIN Departman   dep ON p.DepartmanId = dep.DepartmanId
-                    WHERE d.DevamsizlikTarihi BETWEEN @Bas AND @Bit";
-
-        if (personelId.HasValue) sql += " AND d.PersonelId = @Pid";
-        sql += " ORDER BY d.DevamsizlikTarihi DESC";
-
-        var cmd = new System.Data.SqlClient.SqlCommand(sql, SqlDBConnection.GetConnection());
-        cmd.Parameters.AddWithValue("@Bas", dtpRaporBaslangic.Value.Date);
-        cmd.Parameters.AddWithValue("@Bit", dtpRaporBitis.Value.Date);
-        if (personelId.HasValue)
-          cmd.Parameters.AddWithValue("@Pid", personelId.Value);
-
-        var table = new System.Data.DataTable();
-        using (var adapter = new System.Data.SqlClient.SqlDataAdapter(cmd))
-          adapter.Fill(table);
+        var table = _raporDal.DevamsizlikRaporu(dtpRaporBaslangic.Value.Date, dtpRaporBitis.Value.Date, personelId);
 
         dgvRapor.DataSource = table;
         DgvDevamsizlikAyarla();
@@ -293,6 +276,8 @@ namespace PersonnelManagement.Forms
 
       using (var sfd = new SaveFileDialog())
       {
+        sfd.DefaultExt = "xlsx";
+        sfd.AddExtension = true;
         sfd.Filter = "Excel Dosyası (*.xlsx)|*.xlsx|CSV Dosyası (*.csv)|*.csv";
         sfd.FileName = $"Rapor_{DateTime.Now:yyyyMMdd_HHmmss}";
 
@@ -300,23 +285,7 @@ namespace PersonnelManagement.Forms
 
         try
         {
-          using (var writer = new System.IO.StreamWriter(sfd.FileName, false, System.Text.Encoding.UTF8))
-          {
-            var basliklar = new List<string>();
-            foreach (DataGridViewColumn col in dgvRapor.Columns)
-              if (col.Visible)
-                basliklar.Add($"\"{col.HeaderText}\"");
-            writer.WriteLine(string.Join(";", basliklar));
-
-            foreach (DataGridViewRow row in dgvRapor.Rows)
-            {
-              var satir = new List<string>();
-              foreach (DataGridViewCell cell in row.Cells)
-                if (dgvRapor.Columns[cell.ColumnIndex].Visible)
-                  satir.Add($"\"{(cell.Value ?? "")}\"");
-              writer.WriteLine(string.Join(";", satir));
-            }
-          }
+          RaporDisariAktarma.Kaydet(dgvRapor, sfd.FileName);
 
           MessageBox.Show($"Rapor kaydedildi:\n{sfd.FileName}",
               "Başarılı", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -330,57 +299,22 @@ namespace PersonnelManagement.Forms
     }
 
     private void btnYazdir_Click(object sender, EventArgs e)
-    {/*
+    {
       if (dgvRapor.DataSource == null || dgvRapor.Rows.Count == 0)
       {
-        MessageBox.Show("Yazdırılacak veri bulunamadı.",
-            "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        MessageBox.Show("Yazdırılacak veri bulunamadı.", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
         return;
       }
-
-      var pd = new System.Drawing.Printing.PrintDocument();
-      pd.PrintPage += (s, ev) =>
+      try
       {
-        var font = new System.Drawing.Font("Arial", 8);
-        var boldFont = new System.Drawing.Font("Arial", 12, System.Drawing.FontStyle.Bold);
-        int y = 50;
-        int x = 30;
-        int satirYuksekligi = 20;
-
-        ev.Graphics.DrawString(
-            $"Rapor: {cmbRaporTuru.SelectedItem}  —  {DateTime.Now:dd.MM.yyyy}",
-            boldFont, System.Drawing.Brushes.Black, x, y);
-        y += 30;
-
-        foreach (DataGridViewColumn col in dgvRapor.Columns)
-        {
-          if (col.Visible)
-            ev.Graphics.DrawString(col.HeaderText, font, System.Drawing.Brushes.Black, x, y);
-          x += 80;
-        }
-        y += satirYuksekligi;
-        x = 30;
-
-        int satirSayisi = Math.Min(50, dgvRapor.Rows.Count);
-        for (int i = 0; i < satirSayisi; i++)
-        {
-          foreach (DataGridViewCell cell in dgvRapor.Rows[i].Cells)
-          {
-            if (dgvRapor.Columns[cell.ColumnIndex].Visible)
-              ev.Graphics.DrawString((cell.Value ?? "").ToString(), font,
-                  System.Drawing.Brushes.Black, x, y);
-            x += 80;
-          }
-          y += satirYuksekligi;
-          x = 30;
-        }
-
-        ev.HasMorePages = false;
-      };
-
-      var pv = new PrintPreviewDialog { Document = pd };
-      pv.ShowDialog();
-      */
+        using (var document = new ReportPrintDocument(dgvRapor, Convert.ToString(cmbRaporTuru.SelectedItem)))
+        using (var preview = new PrintPreviewDialog { Document = document, Width = 1000, Height = 700 })
+          preview.ShowDialog(this);
+      }
+      catch (Exception ex)
+      {
+        MessageBox.Show("Yazdırma önizlemesi açılamadı: " + ex.Message, "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+      }
     }
 
     private void btnKapat_Click(object sender, EventArgs e)

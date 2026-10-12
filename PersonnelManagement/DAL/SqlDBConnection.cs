@@ -6,24 +6,36 @@ namespace PersonnelManagement.DAL
 {
   public static class SqlDBConnection
   {
-    private static SqlConnection _connection = null;
-
+    // Farklı iş parçacıkları aynı reader veya transaction'ı paylaşmaz.
+    [ThreadStatic]
+    private static SqlConnection _connection;
     public static SqlConnection GetConnection()
     {
+      if (_connection != null && _connection.State == ConnectionState.Broken)
+        CloseConnection();
       if (_connection == null)
+      {
         _connection = new SqlConnection(ConnectionSettings.Read());
+      }
 
-      if (_connection.State == ConnectionState.Closed)
-        _connection.Open();
-
-      return _connection;
+      try
+      {
+        if (_connection.State == ConnectionState.Closed)
+          _connection.Open();
+        return _connection;
+      }
+      catch
+      {
+        CloseConnection();
+        throw;
+      }
     }
 
     public static void CloseConnection()
     {
-      if (_connection != null && _connection.State == ConnectionState.Open)
-        _connection.Close();
+      SqlConnection connection = _connection;
+      _connection = null;
+      connection?.Dispose();
     }
   }
 }
-

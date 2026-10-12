@@ -1,3 +1,4 @@
 <Solution>
   <Project Path="PersonnelManagement/PersonnelManagement.csproj" Id="87178278-b73d-41af-a02a-6135ad9f187d" />
+  <Project Path="tests/PersonnelManagement.Tests.csproj" Id="25351d74-1b5a-4bce-884e-9473289b8fc9" />
 </Solution>

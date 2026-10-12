@@ -1,4 +1,5 @@
 ﻿using PersonnelManagement.Forms;
+using PersonnelManagement.DAL;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +18,8 @@ namespace PersonnelManagement
     {
       Application.EnableVisualStyles();
       Application.SetCompatibleTextRenderingDefault(false);
-      Application.Run(new frmLogin());
+      try { Application.Run(new frmLogin()); }
+      finally { SistemLogger.ClearKullanici(); SqlDBConnection.CloseConnection(); }
     }
   }
 }

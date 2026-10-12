@@ -38,7 +38,6 @@ namespace PersonnelManagement.Forms
       this.label5 = new System.Windows.Forms.Label();
       this.label6 = new System.Windows.Forms.Label();
       this.lblHata = new System.Windows.Forms.Label();
-      this.button1 = new System.Windows.Forms.Button();
       this.SuspendLayout();
       // 
       // txtKullaniciAdi
@@ -58,7 +57,7 @@ namespace PersonnelManagement.Forms
       this.label1.Name = "label1";
       this.label1.Size = new System.Drawing.Size(70, 13);
       this.label1.TabIndex = 1;
-      this.label1.Text = "Kullanıcı Adı :";
+      this.label1.Text = "Kullanıcı Adı";
       // 
       // label2
       // 
@@ -76,7 +75,6 @@ namespace PersonnelManagement.Forms
       this.txtSifre.PasswordChar = '*';
       this.txtSifre.Size = new System.Drawing.Size(127, 20);
       this.txtSifre.TabIndex = 3;
-
       this.txtSifre.TextChanged += new System.EventHandler(this.txtSifre_TextChanged);
       this.txtSifre.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSifre_KeyDown);
       // 
@@ -135,21 +133,11 @@ namespace PersonnelManagement.Forms
       this.lblHata.TabIndex = 9;
       this.lblHata.Text = ".";
       // 
-      // button1
-      // 
-      this.button1.Location = new System.Drawing.Point(12, 73);
-      this.button1.Name = "button1";
-      this.button1.Size = new System.Drawing.Size(99, 23);
-      this.button1.TabIndex = 10;
-      this.button1.Text = "Giriş";
-      this.button1.UseVisualStyleBackColor = true;
-      // 
       // frmLogin
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.ClientSize = new System.Drawing.Size(240, 142);
-      this.Controls.Add(this.button1);
       this.Controls.Add(this.lblHata);
       this.Controls.Add(this.label6);
       this.Controls.Add(this.label5);
@@ -181,6 +169,5 @@ namespace PersonnelManagement.Forms
     private System.Windows.Forms.Label label5;
     private System.Windows.Forms.Label label6;
     private System.Windows.Forms.Label lblHata;
-    private System.Windows.Forms.Button button1;
   }
 }

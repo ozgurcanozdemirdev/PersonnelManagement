@@ -1,10 +1,10 @@
 ﻿param(
     [string]$Server,
-    [string]$Database = 'PersonelTakipDb',
+    [string]$Database = 'PersonelTakipV090Db',
     [string]$UserName,
     [Security.SecureString]$Password,
     [switch]$TrustServerCertificate,
-    [string]$SettingsDirectory = (Join-Path $env:LOCALAPPDATA 'PersonnelManagement\V0.8.0')
+    [string]$SettingsDirectory = (Join-Path $env:LOCALAPPDATA 'PersonnelManagement\V0.9.0')
 )
 $ErrorActionPreference = 'Stop'
 Add-Type -AssemblyName System.Data, System.Security
