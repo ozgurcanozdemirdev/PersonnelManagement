@@ -1,0 +1,22 @@
+# Visual Studio and build output
+.vs/
+**/bin/
+**/obj/
+*.user
+*.suo
+TestResults/
+
+# Local connection settings and database files
+connection.dat
+*.local.config
+.env
+.env.*
+*.bak
+*.mdf
+*.ldf
+*.sqlite
+*.sqlite3
+*.db
+*.pfx
+*.key
+*.log
