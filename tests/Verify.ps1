@@ -1,10 +1,10 @@
-﻿param(
+param(
   [ValidateSet('Debug','Release')][string]$Configuration = 'Release',
-  [string]$MSBuildPath = ''
+  [string]$MSBuildPath
 )
 $ErrorActionPreference = 'Stop'
 if ([string]::IsNullOrWhiteSpace($env:PERSONNELMANAGEMENT_TEST_ADMIN_CONNECTION_STRING)) {
-  throw 'PERSONNELMANAGEMENT_TEST_ADMIN_CONNECTION_STRING içinde yerel test sunucusunun SQL bağlantısını tanımlayın.'
+  throw 'Set PERSONNELMANAGEMENT_TEST_ADMIN_CONNECTION_STRING for a local SQL Server test instance. See tests/README.en.md or tests/README.tr.md.'
 }
 if ([string]::IsNullOrWhiteSpace($MSBuildPath)) {
   $command = Get-Command MSBuild.exe -ErrorAction SilentlyContinue
@@ -16,11 +16,11 @@ if ([string]::IsNullOrWhiteSpace($MSBuildPath)) {
     }
   }
 }
-if ([string]::IsNullOrWhiteSpace($MSBuildPath) -or -not (Test-Path -LiteralPath $MSBuildPath)) { throw 'MSBuild bulunamadı; MSBuildPath parametresini kullanın.' }
-& $MSBuildPath (Join-Path $PSScriptRoot 'PersonnelManagement.Tests.csproj') /t:Rebuild "/p:Configuration=$Configuration" /nologo /v:minimal
-if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
-$testOutput = Join-Path $PSScriptRoot "bin\$Configuration\exports"
-New-Item -ItemType Directory -Path $testOutput -Force | Out-Null
-$setup = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot '..\PersonnelManagement\Kaynak\DatabaseSetup.sql'))
-& (Join-Path $PSScriptRoot "bin\$Configuration\PersonnelManagement.Tests.exe") 'unused' $setup $testOutput (Join-Path $PSScriptRoot 'LegacySchemaFixture.sql')
-exit $LASTEXITCODE
+if ([string]::IsNullOrWhiteSpace($MSBuildPath) -or -not (Test-Path -LiteralPath $MSBuildPath)) { throw 'MSBuild was not found.' }
+$project = Join-Path $PSScriptRoot 'PersonnelManagement.Tests\PersonnelManagement.Tests.csproj'
+& $MSBuildPath $project /t:Rebuild "/p:Configuration=$Configuration" /v:minimal /nologo
+if ($LASTEXITCODE -ne 0) { throw 'Test build failed.' }
+$runner = Join-Path $PSScriptRoot "PersonnelManagement.Tests\bin\$Configuration\PersonnelManagement.Tests.exe"
+$scripts = Join-Path (Split-Path $PSScriptRoot -Parent) 'PersonnelManagement\Sources'
+& $runner $scripts
+if ($LASTEXITCODE -ne 0) { throw 'Regression checks failed. Inspect TEST_ERROR and cleanup output.' }

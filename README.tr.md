@@ -1,56 +1,74 @@
-# PersonnelManagement 0.9.0
+# PersonnelManagement
 
-[English](README.md)
+İnsan kaynakları ekipleri için C# WinForms personel, vardiya, giriş/çıkış, izin ve rapor yönetimi uygulaması. **1.0.0** sürümü SQL Server kullanır; kod ve ana veritabanı adları İngilizcedir. Arayüz Türkçe ve İngilizce arasında değiştirilebilir.
 
-Personel, departman/pozisyon, vardiya, giriş-çıkış, izin ve raporlama işlemleri için C# WinForms uygulaması. Arayüz Türkçedir; namespace ve assembly adı `PersonnelManagement`.
+[English](README.md) · [Sürüm geçmişi](CHANGELOG.md) · [MIT lisansı](LICENSE)
+
+## Özellikler
+
+- Departman, pozisyon ve vardiya bağlantılarıyla personel kayıtları.
+- Gece vardiyası, mola ve fazla mesaiyi dikkate alan giriş/çıkış işlemleri.
+- Her girişte saklanan vardiya planı; sonraki vardiya değişiklikleri geçmiş kaydın hesabını değiştirmez.
+- İzin çakışması, onay/red, iptal geçmişi ve yıl bazında yıllık izin bakiyesi.
+- Personel, giriş/çıkış, izin ve devamsızlık raporları; XLSX/CSV çıktısı ve çok sayfalı yazdırma.
+- Kalıcı TR/EN seçimi; ekran metinleri ve doğrulama mesajları.
+- Arayüz ve veri erişiminde Admin, İK Yöneticisi ve İK Çalışanı yetkileri.
+- PBKDF2-SHA256 parola saklama, şifreli yerel SQL ayarı ve işlemle birlikte kaydedilen loglar.
+- İptal edilebilen asenkron arama/rapor okuması ve seçim listeleri için yalnız kimlik/ad sorguları.
 
 ## Gereksinimler
 
-- Windows, .NET Framework 4.8.1.
-- .NET masaüstü iş yükü ve 4.8.1 targeting pack kurulu Visual Studio veya Build Tools.
-- SQL Server 2022 veya sonrası, SSMS ve etkin SQL Server Authentication.
-- Kurulum araçları için Windows PowerShell 5.1.
+Windows, WinForms ve .NET Framework **4.8.1** hedefleme paketini içeren Visual Studio/MSBuild ve **SQL Server Authentication** kabul eden yerel SQL Server. Çözüm `.slnx` biçimindedir. Harici NuGet paketi gerekmez.
 
-## Kurulum
+## Demo ile çalıştırma
 
-1. SSMS'e SQL Server Authentication ile bağlan.
-2. Yeni kurulum için `PersonnelManagement/Kaynak/DatabaseSetup.sql` dosyasının tamamını çalıştır. `PersonelTakipV090Db` oluşturulur; bu adla veritabanı varsa kurulum durur. Mevcut veriler silinmez. Zaten çalışan yerel kurulumunda scripti yeniden çalıştırman gerekmez.
-3. Bu sürümün ana klasöründe bağlantıyı tanımla:
+1. `PersonnelManagement.slnx` çözümünü açıp Release olarak derleyin.
+2. SSMS'te [English/DatabaseSetupWithDemo.sql](PersonnelManagement/Sources/English/DatabaseSetupWithDemo.sql) dosyasının tamamını çalıştırın. `PersonnelManagementDB` ve yapay örnek kayıtlar oluşturulur. Mevcut veritabanının üzerine yazılmaz. Ad zaten kullanılıyorsa ayrı bir ad seçip çalıştıracağınız scriptlerdeki bu adı değiştirin. SQL hatasında sonraki adıma geçmeyin.
+3. [English/DatabaseApplicationAccount.sql](PersonnelManagement/Sources/English/DatabaseApplicationAccount.sql) dosyasını SQL kurulum yöneticisiyle çalıştırın. Değişkenlerde benzersiz SQL hesap adı ve özel parola belirleyin; parolayı kaynak dosyada yayımlamayın. Oluşan hesap sysadmin/db_owner değildir; personel silme ve log güncelleme izni yoktur.
+4. Uygulamayı başlatın. **Bağlantı Ayarları** ekranında sunucu, veritabanı, SQL hesap adı ve SQL parolasını girip kaydedin. **Sunucu sertifikasına güven** seçeneğini o sunucunun sertifikasına güvenmek istediğinizde işaretleyin. Bağlantı şifreleme açık kalır.
+5. Aşağıdaki uygulama hesaplarından biriyle giriş yapın. Bunlar SQL bağlantı hesabından ayrıdır.
+
+| Hesap | Parola | Rol |
+| --- | --- | --- |
+| admin | Admin123! | Sistem Yöneticisi |
+| manager | Manager123! | İK Yöneticisi |
+| employee | Employee123! | İK Çalışanı |
+
+Boş kurulum için demo dosyası yerine `DatabaseSetup.sql` kullanılır. İlk uygulama admini `tools/CreateAdmin.ps1` ile oluşturulur. Ayrıntılar [veritabanı açıklamalarında](PersonnelManagement/Sources/README.tr.md).
+
+## Yetkiler
+
+Çalışan rolü insan kaynakları personelidir; şirket çalışanlarının yalnız kendi bilgilerini gördüğü bir portal değildir.
+
+| İşlem | Admin | İK Yöneticisi | İK Çalışanı |
+| --- | --- | --- | --- |
+| Ana menü ve personel kayıtları | Evet | Evet | Evet |
+| Personel ekleme/güncelleme ve giriş/çıkış kaydı | Evet | Evet | Evet |
+| Yıllık izin hakkını değiştirme veya işten çıkarma | Evet | Evet | Hayır |
+| Vardiya görüntüleme ve izin talebi oluşturma | Evet | Evet | Evet |
+| Vardiya yönetimi; izin onay/red/iptal | Evet | Evet | Hayır |
+| Rapor, dışa aktarma ve yazdırma | Evet | Evet | Hayır |
+| Uygulama hesabı oluşturma ve rol atama | Evet | Hayır | Hayır |
+
+İşlemler güncel veritabanı rolünü ve aktiflik durumunu kontrol eder. Son aktif adminin rolü düşürülemez. İK çalışanı mevcut yıllık izin hakkını korur ve yeni kayıtta varsayılan değeri kullanır. Uygulama mevzuata göre izin hakkı hesaplamaz.
+
+## Bağlantı ve testler
+
+SQL ayarı Windows DPAPI ile `%LOCALAPPDATA%\PersonnelManagement\V1.0.0\English\connection.dat` konumuna kaydedilir. Bu ayrı profil, eski Türkçe V1.0 veritabanına ait ayarların yüklenmesini önler. Profil yoksa uygulama dosyasının yanındaki şifreli `connection.dat` okunabilir; bozuk profil olduğunda sessizce başka veritabanına geçilmez.
+
+`PERSONNELMANAGEMENT_V100_CONNECTION_STRING` işlem değişkeni önceliklidir. Kaynak kodda kullanılabilir bağlantı veya özel SQL parolası yoktur. Windows Authentication ve yüksek yetkili çalışma hesapları reddedilir.
+
+Windows PowerShell 5.1 ile yapılandırma:
 
 ```powershell
-powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\tools\ConfigureConnection.ps1 -Server "localhost\SQLEXPRESS" -Database "PersonelTakipV090Db"
+$sqlCredential = Get-Credential -Message 'Sınırlı uygulama SQL hesabı'
+.\tools\ConfigureConnection.ps1 -Server 'SUNUCU\INSTANCE' -Credential $sqlCredential
 ```
 
-Sunucu adını kendi SQL instance adına göre değiştir. SQL kullanıcı adı ve şifresi istenir. Doğrulanan bağlantı, `%LOCALAPPDATA%\PersonnelManagement\V0.9.0\connection.dat` dosyasına bu Windows kullanıcısına özel şifreli olarak kaydedilir; proje dosyalarına yazılmaz. Başka bilgisayar veya Windows kullanıcısı için aracı yeniden çalıştır.
+Güvendiğiniz imzalı olmayan sertifika için `-TrustServerCertificate` eklenebilir. `-SettingsDirectory` ile uygulama klasöründeki şifreli yedek konuma yazılabilir. Araç bağlantı ve İngilizce şema doğrulanmadan mevcut ayarı değiştirmez.
 
-Şifreli bağlantı etkin kullanılır. Yerel geliştirme sunucunda kendinden imzalı sertifika varsa `-TrustServerCertificate` ekleyebilirsin. Güvenilen sertifikası olan sunucularda sertifika doğrulamasını açık bırak.
+Yerel geliştirme SQL sunucusu için yalnız mevcut işlemde `PERSONNELMANAGEMENT_TEST_ADMIN_CONNECTION_STRING` tanımlayıp `.\tests\Verify.ps1 -Configuration Release` çalıştırın. Testler GUID adlı geçici veritabanları ve SQL hesapları oluşturur, sonunda kaldırır. [Test açıklamaları](tests/README.tr.md) ve [bilinen sınırlar](docs/KnownLimitations.tr.md).
 
-`PERSONNELMANAGEMENT_V090_CONNECTION_STRING` ortam değişkeni yalnız ilgili uygulama sürecinin bağlantısını değiştirebilir ve yerel dosyadan önce okunur. Kaynak dosyalarındaki bağlantı varsayılanları boştur. Gerçek şifreleri GitHub'a gönderme.
+`UI` ekranları ve dil desteğini, `DataAccess` parametreli SQL işlemlerini, `Models` veri nesnelerini, `Security` parola/yetki/doğrulamayı, `Logging` işlem loglarını, `Reporting` dışa aktarımı içerir.
 
-Kurulum scriptindeki örnek uygulama hesaplarının giriş bilgileri ilgili INSERT satırlarının yanında açıklanır. Bunlar SQL bağlantı bilgileri değildir. Gerçek personel verileriyle kullanmadan önce değiştir. Uygulama şifreleri bu sürümün mevcut saklama biçiminde tutulur.
-
-## Derleme
-
-Slnx destekleyen Visual Studio ile `PersonnelManagement.slnx` dosyasını aç. Diğer sürümlerde `PersonnelManagement/PersonnelManagement.csproj` doğrudan açılabilir. Derle ve çalıştır. Developer PowerShell ile:
-
-```powershell
-MSBuild.exe .\PersonnelManagement\PersonnelManagement.csproj /t:Rebuild /p:Configuration=Release
-```
-
-Harici NuGet paketi gerekmiyor. `.vs`, `bin` ve `obj` Git tarafından hariç tutulur.
-
-## Testler
-
-[tests/README.tr.md](tests/README.tr.md) test kapsamını açıklar. Yalnız test süreci için `PERSONNELMANAGEMENT_TEST_ADMIN_CONNECTION_STRING` tanımla; yerel SQL hesabının geçici veritabanı oluşturma ve silme izni olmalı. Ardından:
-
-```powershell
-powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\tests\Verify.ps1
-```
-
-Testler GUID adlı geçici veritabanları kullanır ve sonunda kaldırır. Normal personel veritabanında çalışmaz. Fiziksel yazıcı ve bütün manuel ekran akışları bu kontrollerin kapsamına girmez.
-
-## Sürüm kapsamı
-
-V0.9.0 giriş-çıkış, izin doğrulama ve raporlama düzeltmeleri ile regresyon testlerini içerir. Kullanıcı girişi, rol yönetimi ve veritabanı loglaması etkindir. Arayüz ve mevcut kod adları Türkçedir; uygulama şifreleri bu sürümün mevcut saklama biçiminde tutulur.
-
-Değişiklikler [CHANGELOG.md](CHANGELOG.md) dosyasındadır. Lisans: [MIT](LICENSE).
+Türkçe SQL kopyaları ayrı `PersonelYonetimiDB` veritabanında Türkçe tablo/sütun kullanır. Uygulama arayüz dilinden bağımsız olarak İngilizce şemaya bağlanır. Aktarım scriptleri kayıt kimliklerini, parolaları, V0.9 vardiya planlarını ve iptal geçmişini korur. Eski kayıtta plan yoksa mevcut vardiyadan oluşturulur. Canlı veritabanı otomatik dönüştürülmez.

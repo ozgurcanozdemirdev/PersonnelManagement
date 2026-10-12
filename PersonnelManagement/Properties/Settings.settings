@@ -1,9 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
-<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="PersonnelManagement.Properties" GeneratedClassName="Settings">
-  <Profiles />
-  <Settings>
-    <Setting Name="DBConStr" Type="(Connection string)" Scope="Application">
-      <Value Profile="(Default)"></Value>
-    </Setting>
-  </Settings>
-</SettingsFile>
+<?xml version='1.0' encoding='utf-8'?>
+<ns0:SettingsFile xmlns:ns0="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="PersonnelManagement.Properties" GeneratedClassName="Settings">
+  <ns0:Profiles />
+  <ns0:Settings>
+    <ns0:Setting Name="DBConStr" Type="(Connection string)" Scope="Application">
+      <ns0:DesignTimeValue Profile="(Default)"></ns0:DesignTimeValue>
+      <ns0:Value Profile="(Default)"></ns0:Value>
+    </ns0:Setting>
+  </ns0:Settings>
+</ns0:SettingsFile>

@@ -1,5 +1,6 @@
-﻿using PersonnelManagement.Forms;
-using PersonnelManagement.DAL;
+using PersonnelManagement.UI.Localization;
+using PersonnelManagement.UI.Forms;
+using PersonnelManagement.Connection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,10 +17,11 @@ namespace PersonnelManagement
     [STAThread]
     static void Main()
     {
+      LanguageManager.Initialize();
       Application.EnableVisualStyles();
       Application.SetCompatibleTextRenderingDefault(false);
-      try { Application.Run(new frmLogin()); }
-      finally { SistemLogger.ClearKullanici(); SqlDBConnection.CloseConnection(); }
+      Application.ApplicationExit += (s, e) => SqlDatabaseConnection.CloseConnection();
+      Application.Run(new LoginForm());
     }
   }
 }

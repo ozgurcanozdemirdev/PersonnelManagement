@@ -1,107 +1,5 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='utf-8'?>
 <root>
-  <!-- 
-    Microsoft ResX Schema 
-    
-    Version 2.0
-    
-    The primary goals of this format is to allow a simple XML format 
-    that is mostly human readable. The generation and parsing of the 
-    various data types are done through the TypeConverter classes 
-    associated with the data types.
-    
-    Example:
-    
-    ... ado.net/XML headers & schema ...
-    <resheader name="resmimetype">text/microsoft-resx</resheader>
-    <resheader name="version">2.0</resheader>
-    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
-    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
-    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
-    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
-    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
-        <value>[base64 mime encoded serialized .NET Framework object]</value>
-    </data>
-    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
-        <comment>This is a comment</comment>
-    </data>
-                
-    There are any number of "resheader" rows that contain simple 
-    name/value pairs.
-    
-    Each data row contains a name, and value. The row also contains a 
-    type or mimetype. Type corresponds to a .NET class that support 
-    text/value conversion through the TypeConverter architecture. 
-    Classes that don't support this are serialized and stored with the 
-    mimetype set.
-    
-    The mimetype is used for serialized objects, and tells the 
-    ResXResourceReader how to depersist the object. This is currently not 
-    extensible. For a given mimetype the value must be set accordingly:
-    
-    Note - application/x-microsoft.net.object.binary.base64 is the format 
-    that the ResXResourceWriter will generate, however the reader can 
-    read any of the formats listed below.
-    
-    mimetype: application/x-microsoft.net.object.binary.base64
-    value   : The object must be serialized with 
-            : System.Serialization.Formatters.Binary.BinaryFormatter
-            : and then encoded with base64 encoding.
-    
-    mimetype: application/x-microsoft.net.object.soap.base64
-    value   : The object must be serialized with 
-            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
-            : and then encoded with base64 encoding.
-
-    mimetype: application/x-microsoft.net.object.bytearray.base64
-    value   : The object must be serialized into a byte array 
-            : using a System.ComponentModel.TypeConverter
-            : and then encoded with base64 encoding.
-    -->
-  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-    <xsd:element name="root" msdata:IsDataSet="true">
-      <xsd:complexType>
-        <xsd:choice maxOccurs="unbounded">
-          <xsd:element name="metadata">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" />
-              </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" />
-              <xsd:attribute name="type" type="xsd:string" />
-              <xsd:attribute name="mimetype" type="xsd:string" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="assembly">
-            <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string" />
-              <xsd:attribute name="name" type="xsd:string" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="data">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
-              </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="resheader">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-              </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" />
-            </xsd:complexType>
-          </xsd:element>
-        </xsd:choice>
-      </xsd:complexType>
-    </xsd:element>
-  </xsd:schema>
   <resheader name="resmimetype">
     <value>text/microsoft-resx</value>
   </resheader>
@@ -109,9 +7,1203 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Created" xml:space="preserve">
+    <value>
+Oluşturma tarihi: {0:dd.MM.yyyy HH:mm}</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>   Tarih: {0:dd.MM.yyyy} - {1:dd.MM.yyyy}</value>
+  </data>
+  <data name="Users" xml:space="preserve">
+    <value> kullanıcı</value>
+  </data>
+  <data name="DeactivateEmployee" xml:space="preserve">
+    <value>'{0} {1}' adlı personel pasife alınacak. Emin misiniz?</value>
+  </data>
+  <data name="DeactivateShift" xml:space="preserve">
+    <value>'{0}' vardiyası pasife alınacak. Emin misiniz?</value>
+  </data>
+  <data name="FirstName" xml:space="preserve">
+    <value>Ad</value>
+  </data>
+  <data name="FirstName2" xml:space="preserve">
+    <value>Ad </value>
+  </data>
+  <data name="FullName" xml:space="preserve">
+    <value>Ad Soyad</value>
+  </data>
+  <data name="FirstNameIsRequired" xml:space="preserve">
+    <value>Ad alanı boş bırakılamaz.</value>
+  </data>
+  <data name="Administrator" xml:space="preserve">
+    <value>Yönetici</value>
+  </data>
+  <data name="Address" xml:space="preserve">
+    <value>Adres</value>
+  </data>
+  <data name="ThereIsNoDataToExport" xml:space="preserve">
+    <value>Aktarılacak veri bulunamadı.</value>
+  </data>
+  <data name="ExportFailed" xml:space="preserve">
+    <value>Aktarım sırasında hata:
+</value>
+  </data>
+  <data name="Active" xml:space="preserve">
+    <value>Aktif</value>
+  </data>
+  <data name="NoActiveLeaveTypeWasFound" xml:space="preserve">
+    <value>Aktif izin türü bulunamadı.</value>
+  </data>
+  <data name="NoActiveEmployeeWasFound" xml:space="preserve">
+    <value>Aktif personel bulunamadı.</value>
+  </data>
+  <data name="NoActiveShiftWasFound" xml:space="preserve">
+    <value>Aktif vardiya bulunamadı.</value>
+  </data>
+  <data name="MainMenu" xml:space="preserve">
+    <value>Ana Menü</value>
+  </data>
+  <data name="CurrentTime" xml:space="preserve">
+    <value>Anlık Saat</value>
+  </data>
+  <data name="AnnualLeave" xml:space="preserve">
+    <value>Yıllık İzin</value>
+  </data>
+  <data name="AnnualLeaveAllowance" xml:space="preserve">
+    <value>Yıllık İzin Hakkı</value>
+  </data>
+  <data name="Approved" xml:space="preserve">
+    <value>Onaylı</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Ara</value>
+  </data>
+  <data name="Search2" xml:space="preserve">
+    <value>Arama Bölümü</value>
+  </data>
+  <data name="SearchFailed" xml:space="preserve">
+    <value>Arama sırasında hata:
+</value>
+  </data>
+  <data name="FindEmployee" xml:space="preserve">
+    <value>Aranacak Personel :</value>
+  </data>
+  <data name="MonthlyReport" xml:space="preserve">
+    <value>Aylık Rapor: {0:MMMM yyyy}</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Açıklama</value>
+  </data>
+  <data name="DescriptionCannotExceed500Characters" xml:space="preserve">
+    <value>Açıklama en fazla 500 karakter olabilir.</value>
+  </data>
+  <data name="ConnectionSettings" xml:space="preserve">
+    <value>Bağlantı Ayarları</value>
+  </data>
+  <data name="ConnectionError" xml:space="preserve">
+    <value>Bağlantı hatası: </value>
+  </data>
+  <data name="ConnectionSaved" xml:space="preserve">
+    <value>Bağlantı kaydedildi.</value>
+  </data>
+  <data name="ConnectionFailedCheckTheServerDatabaseAndAccountPermissions" xml:space="preserve">
+    <value>Bağlantı kurulamadı. Sunucu, veritabanı ve hesap yetkilerini kontrol edin.</value>
+  </data>
+  <data name="TheConnectionIsConfiguredUsingAnEnvironmentVariableUpdateThatVariableToChangeTheCo" xml:space="preserve">
+    <value>Bağlantı, ortam değişkeni üzerinden ayarlanmış. Bu ayarı değiştirmek için ortam değişkenini güncelleyin.</value>
+  </data>
+  <data name="SaveConnection" xml:space="preserve">
+    <value>Bağlantıyı Kaydet</value>
+  </data>
+  <data name="Success" xml:space="preserve">
+    <value>Başarılı</value>
+  </data>
+  <data name="SuccessfulSignIn" xml:space="preserve">
+    <value>Başarılı giriş</value>
+  </data>
+  <data name="Start" xml:space="preserve">
+    <value>Başlangıç</value>
+  </data>
+  <data name="StartTime" xml:space="preserve">
+    <value>Başlangıç Saati</value>
+  </data>
+  <data name="StartDate" xml:space="preserve">
+    <value>Başlangıç Tarihi</value>
+  </data>
+  <data name="Pending" xml:space="preserve">
+    <value>Beklemede</value>
+  </data>
+  <data name="Information" xml:space="preserve">
+    <value>Bilgi</value>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>Bilgi Bölümü</value>
+  </data>
+  <data name="NoPrinterIsAvailableOnThisComputer" xml:space="preserve">
+    <value>Bilgisayarda kullanılabilir bir yazıcı bulunamadı.</value>
+  </data>
+  <data name="SelectARole" xml:space="preserve">
+    <value>Bir rol seçin.</value>
+  </data>
+  <data name="End" xml:space="preserve">
+    <value>Bitiş</value>
+  </data>
+  <data name="EndTime" xml:space="preserve">
+    <value>Bitiş Saati</value>
+  </data>
+  <data name="EndDate" xml:space="preserve">
+    <value>Bitiş Tarihi</value>
+  </data>
+  <data name="EndDateCannotBeEarlierThanStartDate" xml:space="preserve">
+    <value>Bitiş tarihi başlangıç tarihinden önce olamaz.</value>
+  </data>
+  <data name="ThisNationalIDBelongsToAnotherEmployee" xml:space="preserve">
+    <value>Bu TC Kimlik No başka bir personele ait!</value>
+  </data>
+  <data name="ThisNationalIDIsAlreadyRegistered" xml:space="preserve">
+    <value>Bu TC Kimlik No zaten kayıtlı!</value>
+  </data>
+  <data name="AdministratorAccessIsRequiredForThisOperation" xml:space="preserve">
+    <value>Bu işlem için admin yetkisi gerekiyor.</value>
+  </data>
+  <data name="AnActiveAdministratorAccountIsRequiredForThisOperation" xml:space="preserve">
+    <value>Bu işlem için aktif admin yetkisi gerekiyor.</value>
+  </data>
+  <data name="ThisUsernameIsAlreadyRegistered" xml:space="preserve">
+    <value>Bu kullanıcı adı zaten kayıtlı.</value>
+  </data>
+  <data name="ThisEmployeeHasNoOpenAttendanceRecord" xml:space="preserve">
+    <value>Bu personelin açık giriş kaydı bulunamadı.</value>
+  </data>
+  <data name="AnOverlappingLeaveRequestExistsForTheseDates" xml:space="preserve">
+    <value>Bu tarihlerde çakışan bir izin mevcut.</value>
+  </data>
+  <data name="AnAttendanceRecordAlreadyExistsForThisShiftDayOrAnEarlierRecordIsStillOpen" xml:space="preserve">
+    <value>Bu vardiya günü için giriş veya henüz kapatılmamış bir kayıt mevcut.</value>
+  </data>
+  <data name="AbsentToday" xml:space="preserve">
+    <value>Bugün Devamsız Sayısı</value>
+  </data>
+  <data name="CheckedInToday" xml:space="preserve">
+    <value>Bugün Giriş Yapan Sayısı </value>
+  </data>
+  <data name="TodaySCheckIns" xml:space="preserve">
+    <value>Bugün Toplam Giriş Sayısı</value>
+  </data>
+  <data name="OnLeaveToday" xml:space="preserve">
+    <value>Bugün İzinli Sayısı </value>
+  </data>
+  <data name="TodaySAndOpenRecordsDate" xml:space="preserve">
+    <value>Bugünün ve açık kayıtların toplamı: {0}  |  Tarih: {1:dd.MM.yyyy}</value>
+  </data>
+  <data name="SelectedEmployee" xml:space="preserve">
+    <value>Bulunan Personelin Adı</value>
+  </data>
+  <data name="Employee" xml:space="preserve">
+    <value>Calisan</value>
+  </data>
+  <data name="Cancelled" xml:space="preserve">
+    <value>İptal Edildi</value>
+  </data>
+  <data name="Gender" xml:space="preserve">
+    <value>Cinsiyet</value>
+  </data>
+  <data name="Sat" xml:space="preserve">
+    <value>Cmt</value>
+  </data>
+  <data name="SelectSatSun" xml:space="preserve">
+    <value>Cmt-Paz Seç</value>
+  </data>
+  <data name="Fri" xml:space="preserve">
+    <value>Cum</value>
+  </data>
+  <data name="Friday" xml:space="preserve">
+    <value>Cuma</value>
+  </data>
+  <data name="Saturday" xml:space="preserve">
+    <value>Cumartesi</value>
+  </data>
+  <data name="Department" xml:space="preserve">
+    <value>Departman</value>
+  </data>
+  <data name="SelectDepartment" xml:space="preserve">
+    <value>Departman Seç</value>
+  </data>
+  <data name="SelectADepartment" xml:space="preserve">
+    <value>Departman seçilmedi.</value>
+  </data>
+  <data name="DepartmentAndPosition" xml:space="preserve">
+    <value>Departman ve Pozisyon</value>
+  </data>
+  <data name="Absence" xml:space="preserve">
+    <value>Devamsızlık</value>
+  </data>
+  <data name="AbsenceReport" xml:space="preserve">
+    <value>Devamsızlık Raporu</value>
+  </data>
+  <data name="AbsenceReportFailed" xml:space="preserve">
+    <value>Devamsızlık raporu oluşturulamadı:
+</value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>Dil</value>
+  </data>
+  <data name="TheFileExtensionMustBeXlsxOrCsv" xml:space="preserve">
+    <value>Dosya uzantısı .xlsx veya .csv olmalıdır.</value>
+  </data>
+  <data name="DateOfBirth" xml:space="preserve">
+    <value>Doğum Tarihi</value>
+  </data>
+  <data name="MaternityLeave" xml:space="preserve">
+    <value>Doğum İzni</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>Durum</value>
+  </data>
+  <data name="Email4" xml:space="preserve">
+    <value>E-Mail</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>E-Posta</value>
+  </data>
+  <data name="Email2" xml:space="preserve">
+    <value>E-posta</value>
+  </data>
+  <data name="MissingInformation" xml:space="preserve">
+    <value>Eksik Bilgi</value>
+  </data>
+  <data name="Email3" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="Employee2" xml:space="preserve">
+    <value>Çalışan</value>
+  </data>
+  <data name="SelectAtLeastOneWorkingDay" xml:space="preserve">
+    <value>En az bir çalışma günü seçilmelidir.</value>
+  </data>
+  <data name="Male" xml:space="preserve">
+    <value>Erkek</value>
+  </data>
+  <data name="LeftEarly" xml:space="preserve">
+    <value>Erken Çıkış?</value>
+  </data>
+  <data name="EarlyDepartures" xml:space="preserve">
+    <value>Erken Çıkışlar</value>
+  </data>
+  <data name="LeftEarly2" xml:space="preserve">
+    <value>Erken Çıkıştı Mı?</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Evet</value>
+  </data>
+  <data name="ExcelFileXlsxXlsxCSVFileCsvCsv" xml:space="preserve">
+    <value>Excel Dosyası (*.xlsx)|*.xlsx|CSV Dosyası (*.csv)|*.csv</value>
+  </data>
+  <data name="ExportToExcelCSV" xml:space="preserve">
+    <value>Excel / CSV Aktar</value>
+  </data>
+  <data name="ClearForm" xml:space="preserve">
+    <value>Formu Temizle</value>
+  </data>
+  <data name="SelectPhoto" xml:space="preserve">
+    <value>Fotoğraf Seç</value>
+  </data>
+  <data name="ArrivedLate" xml:space="preserve">
+    <value>Geç Geldi Mi?</value>
+  </data>
+  <data name="LateArrivals" xml:space="preserve">
+    <value>Geç Gelmeler</value>
+  </data>
+  <data name="Late" xml:space="preserve">
+    <value>Geç?</value>
+  </data>
+  <data name="EnterAValidEmailAddress" xml:space="preserve">
+    <value>Geçerli bir e-posta adresi girin.</value>
+  </data>
+  <data name="EnterAValidBreakDurationInMinutes" xml:space="preserve">
+    <value>Geçerli bir mola süresi girin (dakika).</value>
+  </data>
+  <data name="SelectAValidReportType" xml:space="preserve">
+    <value>Geçerli bir rapor türü seçin.</value>
+  </data>
+  <data name="SelectAValidRole" xml:space="preserve">
+    <value>Geçerli bir rol seçin.</value>
+  </data>
+  <data name="EnterAValidAnnualLeaveAllowance" xml:space="preserve">
+    <value>Geçerli bir yıllık izin hakkı girin.</value>
+  </data>
+  <data name="CheckIn" xml:space="preserve">
+    <value>Giriş</value>
+  </data>
+  <data name="SignIn" xml:space="preserve">
+    <value>Giriş </value>
+  </data>
+  <data name="Attendance" xml:space="preserve">
+    <value>Giriş - Kayıt</value>
+  </data>
+  <data name="CheckInSuccessful" xml:space="preserve">
+    <value>Giriş Başarılı</value>
+  </data>
+  <data name="ConfirmCheckIn" xml:space="preserve">
+    <value>Giriş Onayı</value>
+  </data>
+  <data name="CheckIn2" xml:space="preserve">
+    <value>Giriş Yap</value>
+  </data>
+  <data name="RecordedBy" xml:space="preserve">
+    <value>Giriş Yapan Kullanıcı</value>
+  </data>
+  <data name="AnotherOperationHasAlreadyClosedThisAttendanceRecord" xml:space="preserve">
+    <value>Giriş kaydı başka bir işlem tarafından kapatılmış.</value>
+  </data>
+  <data name="CheckInFailed" xml:space="preserve">
+    <value>Giriş kaydı oluşturulamadı:
+</value>
+  </data>
+  <data name="AttendanceTimeOrShiftSnapshotIsMissingCheckTheDatabaseUpdate" xml:space="preserve">
+    <value>Giriş kaydının zaman/plan bilgileri eksik. Veritabanı güncellemesini kontrol edin.</value>
+  </data>
+  <data name="AttendanceReportFailed" xml:space="preserve">
+    <value>Giriş raporu oluşturulamadı:
+</value>
+  </data>
+  <data name="Attendance2" xml:space="preserve">
+    <value>Giriş/Çıkış Kayıt</value>
+  </data>
+  <data name="CheckIn3" xml:space="preserve">
+    <value>Giriş: {0:hh\:mm}  —  </value>
+  </data>
+  <data name="Days" xml:space="preserve">
+    <value>Gün</value>
+  </data>
+  <data name="Update" xml:space="preserve">
+    <value>Güncelle</value>
+  </data>
+  <data name="UpdateFailed" xml:space="preserve">
+    <value>Güncelleme sırasında hata:
+</value>
+  </data>
+  <data name="WorkingDays" xml:space="preserve">
+    <value>Günler</value>
+  </data>
+  <data name="DailyAttendance" xml:space="preserve">
+    <value>Günlük Giriş-Çıkış</value>
+  </data>
+  <data name="DailyRecordsCouldNotBeLoaded" xml:space="preserve">
+    <value>Günlük kayıtlar yüklenirken hata:
+</value>
+  </data>
+  <data name="SickLeave" xml:space="preserve">
+    <value>Hastalık İzni</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Hata</value>
+  </data>
+  <data name="ErrorMessage" xml:space="preserve">
+    <value>Hata Mesajı</value>
+  </data>
+  <data name="Error2" xml:space="preserve">
+    <value>Hata:
+</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>Hayır</value>
+  </data>
+  <data name="Welcome" xml:space="preserve">
+    <value>Hoş geldiniz,  {0}</value>
+  </data>
+  <data name="CellTextExceedsExcelS32767CharacterLimit" xml:space="preserve">
+    <value>Hücre metni Excel'in 32767 karakter sınırını aşıyor.</value>
+  </data>
+  <data name="CellTextCouldNotFitOnThePage" xml:space="preserve">
+    <value>Hücre metni kağıda yerleştirilemedi.</value>
+  </data>
+  <data name="Female" xml:space="preserve">
+    <value>Kadın</value>
+  </data>
+  <data name="RemainingAnnualLeaveDays" xml:space="preserve">
+    <value>Kalan yıllık izin: {0} gün</value>
+  </data>
+  <data name="RemainingAnnualLeave" xml:space="preserve">
+    <value>Kalan yıllık izin: —</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>Kapat</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Kaydet</value>
+  </data>
+  <data name="SaveFailed" xml:space="preserve">
+    <value>Kayıt sırasında hata:
+</value>
+  </data>
+  <data name="RecordCouldNotBeLoaded" xml:space="preserve">
+    <value>Kayıt yüklenirken hata:
+</value>
+  </data>
+  <data name="ThePageIsTooNarrowForTheReportColumns" xml:space="preserve">
+    <value>Kağıt genişliği rapor sütunları için yetersiz.</value>
+  </data>
+  <data name="ThePageIsTooShortForTheReport" xml:space="preserve">
+    <value>Kağıt yüksekliği rapor için yetersiz.</value>
+  </data>
+  <data name="User" xml:space="preserve">
+    <value>Kullanici</value>
+  </data>
+  <data name="User2" xml:space="preserve">
+    <value>Kullanıcı</value>
+  </data>
+  <data name="Username" xml:space="preserve">
+    <value>Kullanıcı Adı</value>
+  </data>
+  <data name="Username2" xml:space="preserve">
+    <value>Kullanıcı Adı :</value>
+  </data>
+  <data name="UserDetails" xml:space="preserve">
+    <value>Kullanıcı Bilgileri</value>
+  </data>
+  <data name="AddUser" xml:space="preserve">
+    <value>Kullanıcı Ekle</value>
+  </data>
+  <data name="UserManagement" xml:space="preserve">
+    <value>Kullanıcı Yönetimi</value>
+  </data>
+  <data name="Username3" xml:space="preserve">
+    <value>Kullanıcı adı</value>
+  </data>
+  <data name="UsernameIsRequired" xml:space="preserve">
+    <value>Kullanıcı adı boş bırakılamaz.</value>
+  </data>
+  <data name="InvalidUsernameOrPassword" xml:space="preserve">
+    <value>Kullanıcı adı veya şifre hatalı!</value>
+  </data>
+  <data name="UserDetailsAreIncomplete" xml:space="preserve">
+    <value>Kullanıcı bilgileri eksik.</value>
+  </data>
+  <data name="UserAdded" xml:space="preserve">
+    <value>Kullanıcı eklendi.</value>
+  </data>
+  <data name="UserCouldNotBeAdded" xml:space="preserve">
+    <value>Kullanıcı eklenemedi.</value>
+  </data>
+  <data name="UsersCouldNotBeLoaded" xml:space="preserve">
+    <value>Kullanıcı listesi yüklenemedi.</value>
+  </data>
+  <data name="TheDatabaseCouldNotBeReachedWhileOpeningUserManagement" xml:space="preserve">
+    <value>Kullanıcı yönetimi açılırken veritabanına erişilemedi.</value>
+  </data>
+  <data name="AdministratorAccessIsRequiredForUserManagement" xml:space="preserve">
+    <value>Kullanıcı yönetimi için admin yetkisi gerekiyor.</value>
+  </data>
+  <data name="Users2" xml:space="preserve">
+    <value>Kullanıcılar</value>
+  </data>
+  <data name="RecordCount" xml:space="preserve">
+    <value>Listede Kaç Kayıt Var</value>
+  </data>
+  <data name="SelectAUserFromTheList" xml:space="preserve">
+    <value>Listeden bir kullanıcı seçin.</value>
+  </data>
+  <data name="FilterByEmployee" xml:space="preserve">
+    <value>Listeyi Personele Göre Filtrele</value>
+  </data>
+  <data name="SelectAnEmployeeToUpdate" xml:space="preserve">
+    <value>Lütfen güncellenecek personeli listeden seçin.</value>
+  </data>
+  <data name="SelectAShiftToUpdate" xml:space="preserve">
+    <value>Lütfen güncellenecek vardiyayı seçin.</value>
+  </data>
+  <data name="EnterAnEmployeeNameOrNationalID" xml:space="preserve">
+    <value>Lütfen personel Adı veya TC Kimlik Numarası Giriniz.</value>
+  </data>
+  <data name="SelectAnEmployeeToDeactivate" xml:space="preserve">
+    <value>Lütfen silinecek personeli listeden seçin.</value>
+  </data>
+  <data name="SelectAShiftToDeactivate" xml:space="preserve">
+    <value>Lütfen silinecek vardiyayı seçin.</value>
+  </data>
+  <data name="MaternityLeave2" xml:space="preserve">
+    <value>Doğum İzni</value>
+  </data>
+  <data name="Excuse" xml:space="preserve">
+    <value>Mazeret</value>
+  </data>
+  <data name="PersonalLeave" xml:space="preserve">
+    <value>Mazeret İzni</value>
+  </data>
+  <data name="Overtime" xml:space="preserve">
+    <value>Mesai</value>
+  </data>
+  <data name="BreakMin" xml:space="preserve">
+    <value>Mola (dk)</value>
+  </data>
+  <data name="BreakDuration" xml:space="preserve">
+    <value>Mola Süresi </value>
+  </data>
+  <data name="BreakDurationMustBeShorterThanTheShift" xml:space="preserve">
+    <value>Mola süresi vardiya süresinden kısa olmalıdır.</value>
+  </data>
+  <data name="Approve" xml:space="preserve">
+    <value>Onay</value>
+  </data>
+  <data name="ApprovalFailed" xml:space="preserve">
+    <value>Onay sırasında hata:
+</value>
+  </data>
+  <data name="Approve2" xml:space="preserve">
+    <value>Onayla</value>
+  </data>
+  <data name="Approved2" xml:space="preserve">
+    <value>Onaylı</value>
+  </data>
+  <data name="CalculatedDays" xml:space="preserve">
+    <value>Otomatik Hesaplanan Gün Sayısı</value>
+  </data>
+  <data name="Deactivated" xml:space="preserve">
+    <value>Pasife alındı</value>
+  </data>
+  <data name="Sun" xml:space="preserve">
+    <value>Paz</value>
+  </data>
+  <data name="Sunday" xml:space="preserve">
+    <value>Pazar</value>
+  </data>
+  <data name="Monday" xml:space="preserve">
+    <value>Pazartesi</value>
+  </data>
+  <data name="Pending2" xml:space="preserve">
+    <value>Beklemede</value>
+  </data>
+  <data name="Thu" xml:space="preserve">
+    <value>Per</value>
+  </data>
+  <data name="PersonalLeave2" xml:space="preserve">
+    <value>Mazeret İzni</value>
+  </data>
+  <data name="FindEmployee2" xml:space="preserve">
+    <value>Personel Bul</value>
+  </data>
+  <data name="EmployeeNotFound" xml:space="preserve">
+    <value>Personel Bulunamadı.</value>
+  </data>
+  <data name="EmployeeReport" xml:space="preserve">
+    <value>Personel Raporu</value>
+  </data>
+  <data name="SelectEmployee" xml:space="preserve">
+    <value>Personel Seç</value>
+  </data>
+  <data name="SelectEmployee2" xml:space="preserve">
+    <value>Personel Seçin</value>
+  </data>
+  <data name="EmployeeSavedID" xml:space="preserve">
+    <value>Personel başarıyla kaydedildi. (ID: {0})</value>
+  </data>
+  <data name="EmployeeDetailsUpdated" xml:space="preserve">
+    <value>Personel bilgileri güncellendi.</value>
+  </data>
+  <data name="EmployeesCouldNotBeLoaded" xml:space="preserve">
+    <value>Personel listesi yüklenirken hata:
+</value>
+  </data>
+  <data name="EmployeeDeactivated" xml:space="preserve">
+    <value>Personel pasife alındı.</value>
+  </data>
+  <data name="SelectEmployeeAllFullName" xml:space="preserve">
+    <value>Personel seç (Tümü / Ad Soyad)</value>
+  </data>
+  <data name="SelectAnEmployee" xml:space="preserve">
+    <value>Personel seçilmedi.</value>
+  </data>
+  <data name="EmployeeSummary" xml:space="preserve">
+    <value>Personel Özet Raporu</value>
+  </data>
+  <data name="Employee3" xml:space="preserve">
+    <value>Personel: </value>
+  </data>
+  <data name="RemainingAnnualLeave2" xml:space="preserve">
+    <value>Personelin Kalan Yıllık İzni</value>
+  </data>
+  <data name="Employees2" xml:space="preserve">
+    <value>Personeller</value>
+  </data>
+  <data name="Thursday" xml:space="preserve">
+    <value>Perşembe</value>
+  </data>
+  <data name="Position" xml:space="preserve">
+    <value>Pozisyon</value>
+  </data>
+  <data name="SelectPosition" xml:space="preserve">
+    <value>Pozisyon Seç</value>
+  </data>
+  <data name="SelectAPosition" xml:space="preserve">
+    <value>Pozisyon seçilmedi.</value>
+  </data>
+  <data name="Mon" xml:space="preserve">
+    <value>Pzt</value>
+  </data>
+  <data name="SelectMonFri" xml:space="preserve">
+    <value>Pzt-Cum Seç</value>
+  </data>
+  <data name="Report" xml:space="preserve">
+    <value>Rapor</value>
+  </data>
+  <data name="Reports" xml:space="preserve">
+    <value>Rapor Ekranı</value>
+  </data>
+  <data name="GenerateReport" xml:space="preserve">
+    <value>Rapor Oluştur</value>
+  </data>
+  <data name="ReportDate" xml:space="preserve">
+    <value>Rapor Tarihi: {0:dd.MM.yyyy HH:mm}</value>
+  </data>
+  <data name="SelectReportType" xml:space="preserve">
+    <value>Rapor Türü Seç</value>
+  </data>
+  <data name="PrintPreview" xml:space="preserve">
+    <value>Rapor Yazdırma Önizlemesi</value>
+  </data>
+  <data name="ReportSaved" xml:space="preserve">
+    <value>Rapor kaydedildi:
+{0}</value>
+  </data>
+  <data name="ReportCouldNotBeGenerated" xml:space="preserve">
+    <value>Rapor oluşturulamadı:
+</value>
+  </data>
+  <data name="ReportCouldNotBePrinted" xml:space="preserve">
+    <value>Rapor yazdırılamadı:
+</value>
+  </data>
+  <data name="ReportAccessCouldNotBeVerified" xml:space="preserve">
+    <value>Rapor yetkisi doğrulanamadı.</value>
+  </data>
+  <data name="Reports2" xml:space="preserve">
+    <value>Raporlar</value>
+  </data>
+  <data name="AdministratorAccessIsRequiredForReports" xml:space="preserve">
+    <value>Raporlar için admin yetkisi gerekiyor.</value>
+  </data>
+  <data name="RejectionFailed" xml:space="preserve">
+    <value>Red işlemi sırasında hata:
+</value>
+  </data>
+  <data name="RejectionReasonIsRequired" xml:space="preserve">
+    <value>Red nedeni boş bırakılamaz.</value>
+  </data>
+  <data name="RejectionReasonIsRequiredAndCannotExceed500Characters" xml:space="preserve">
+    <value>Red nedeni zorunludur ve en fazla 500 karakter olabilir.</value>
+  </data>
+  <data name="EnterTheRejectionReason" xml:space="preserve">
+    <value>Red nedenini girin:</value>
+  </data>
+  <data name="Rejected" xml:space="preserve">
+    <value>Reddedildi</value>
+  </data>
+  <data name="Reject" xml:space="preserve">
+    <value>Reddet</value>
+  </data>
+  <data name="Rejected2" xml:space="preserve">
+    <value>Reddedildi</value>
+  </data>
+  <data name="ImageFilesJpgJpegPngBmp" xml:space="preserve">
+    <value>Resim Dosyaları|*.jpg;*.jpeg;*.png;*.bmp</value>
+  </data>
+  <data name="Role" xml:space="preserve">
+    <value>Rol</value>
+  </data>
+  <data name="UpdateRole" xml:space="preserve">
+    <value>Rol Güncelle</value>
+  </data>
+  <data name="RoleUpdated" xml:space="preserve">
+    <value>Rol güncellendi.</value>
+  </data>
+  <data name="RoleCouldNotBeUpdated" xml:space="preserve">
+    <value>Rol güncellenemedi.</value>
+  </data>
+  <data name="Role2" xml:space="preserve">
+    <value>Rol: </value>
+  </data>
+  <data name="AnSQLAdministratorAccountCannotBeSavedAsAnApplicationSetting" xml:space="preserve">
+    <value>SQL yönetici hesabı uygulama ayarı olarak kaydedilemez.</value>
+  </data>
+  <data name="TimeDoYouConfirm" xml:space="preserve">
+    <value>Saat: {0:HH:mm}
+
+Onaylıyor musunuz?</value>
+  </data>
+  <data name="Tue" xml:space="preserve">
+    <value>Sal</value>
+  </data>
+  <data name="Tuesday" xml:space="preserve">
+    <value>Salı</value>
+  </data>
+  <data name="PageRecords" xml:space="preserve">
+    <value>Sayfa {0}   |   {1} kayıt</value>
+  </data>
+  <data name="Select" xml:space="preserve">
+    <value>Seç</value>
+  </data>
+  <data name="TheSelectedUserWasNotFound" xml:space="preserve">
+    <value>Seçilen kullanıcı bulunamadı.</value>
+  </data>
+  <data name="YouCanChangeTheSelectedUserSRole" xml:space="preserve">
+    <value>Seçilen kullanıcının rolünü değiştirebilirsiniz.</value>
+  </data>
+  <data name="TheSelectedPrinterIsUnavailable" xml:space="preserve">
+    <value>Seçilen yazıcı kullanılamıyor.</value>
+  </data>
+  <data name="DateRangeReportTime" xml:space="preserve">
+    <value>Seçili Tarih Aralığı / Rapor Oluşturma Zamanı</value>
+  </data>
+  <data name="CancelTheSelectedLeaveRequest" xml:space="preserve">
+    <value>Seçili izin talebi iptal edilecek. Emin misiniz?</value>
+  </data>
+  <data name="ApproveTheSelectedLeaveRequest" xml:space="preserve">
+    <value>Seçili izin talebi onaylanacak. Emin misiniz?</value>
+  </data>
+  <data name="ShiftCompletedNoCheckInOrApprovedLeaveFound" xml:space="preserve">
+    <value>Vardiya tamamlandı; giriş veya onaylı izin bulunamadı.</value>
+  </data>
+  <data name="SickLeave2" xml:space="preserve">
+    <value>Hastalık İzni</value>
+  </data>
+  <data name="Deactivate" xml:space="preserve">
+    <value>Sil</value>
+  </data>
+  <data name="ConfirmDeactivation" xml:space="preserve">
+    <value>Silme Onayı</value>
+  </data>
+  <data name="DeactivationFailed" xml:space="preserve">
+    <value>Silme sırasında hata:
+</value>
+  </data>
+  <data name="ExitTheApplication" xml:space="preserve">
+    <value>Sistemden çıkmak istediğinize emin misiniz?</value>
+  </data>
+  <data name="TheLastActiveAdministratorCannotBeDemotedAssignAnotherActiveAdministratorFirst" xml:space="preserve">
+    <value>Son aktif admin hesabının rolü değiştirilemez. Önce başka bir kullanıcıya admin rolü verin.</value>
+  </data>
+  <data name="LastName" xml:space="preserve">
+    <value>Soyad</value>
+  </data>
+  <data name="LastNameIsRequired" xml:space="preserve">
+    <value>Soyad alanı boş bırakılamaz.</value>
+  </data>
+  <data name="Server" xml:space="preserve">
+    <value>Sunucu</value>
+  </data>
+  <data name="NationalID2" xml:space="preserve">
+    <value>T.C. Kimlik</value>
+  </data>
+  <data name="NationalID" xml:space="preserve">
+    <value>TC Kimlik No</value>
+  </data>
+  <data name="NationalIDMustContain11Digits" xml:space="preserve">
+    <value>TC Kimlik No 11 haneli olmalıdır.</value>
+  </data>
+  <data name="NationalIDCanContainOnlyDigits" xml:space="preserve">
+    <value>TC Kimlik No yalnızca rakamlardan oluşmalıdır.</value>
+  </data>
+  <data name="Date2" xml:space="preserve">
+    <value>Tarih</value>
+  </data>
+  <data name="DateAndTime" xml:space="preserve">
+    <value>Tarih ve Saat</value>
+  </data>
+  <data name="Phone" xml:space="preserve">
+    <value>Telefon</value>
+  </data>
+  <data name="Clear" xml:space="preserve">
+    <value>Temizle</value>
+  </data>
+  <data name="TotalAbsenceDays" xml:space="preserve">
+    <value>Toplam Devamsızlık Günü</value>
+  </data>
+  <data name="TotalAbsenceDays2" xml:space="preserve">
+    <value>Toplam Devamsızlık: {0} gün</value>
+  </data>
+  <data name="TotalRecords" xml:space="preserve">
+    <value>Toplam Kayıt</value>
+  </data>
+  <data name="TotalRecords2" xml:space="preserve">
+    <value>Toplam Kayıt: {0}</value>
+  </data>
+  <data name="OvertimeReportRows" xml:space="preserve">
+    <value>Toplam Mesai veya Rapor Satır Sayısı</value>
+  </data>
+  <data name="TotalOvertimeHMin" xml:space="preserve">
+    <value>Toplam Mesai: {0}s {1}dk</value>
+  </data>
+  <data name="TotalEmployees" xml:space="preserve">
+    <value>Toplam Personel Sayısı</value>
+  </data>
+  <data name="TotalRequests" xml:space="preserve">
+    <value>Toplam Talep: {0}</value>
+  </data>
+  <data name="Total" xml:space="preserve">
+    <value>Toplam: </value>
+  </data>
+  <data name="Total0Users" xml:space="preserve">
+    <value>Toplam: 0 kullanıcı</value>
+  </data>
+  <data name="TotalDays" xml:space="preserve">
+    <value>Toplam: {0} gün</value>
+  </data>
+  <data name="TotalRecords3" xml:space="preserve">
+    <value>Toplam: {0} kayıt</value>
+  </data>
+  <data name="TotalShifts" xml:space="preserve">
+    <value>Toplam: {0} vardiya</value>
+  </data>
+  <data name="AllPendingRequests" xml:space="preserve">
+    <value>Tüm Bekleyenler</value>
+  </data>
+  <data name="SelectAllDays" xml:space="preserve">
+    <value>Tüm Günleri Seç</value>
+  </data>
+  <data name="ClearSelection" xml:space="preserve">
+    <value>Tüm Seçimleri Kaldır</value>
+  </data>
+  <data name="AllLeaveRequests" xml:space="preserve">
+    <value>Tüm İzinler</value>
+  </data>
+  <data name="All" xml:space="preserve">
+    <value>Tümü</value>
+  </data>
+  <data name="UnpaidLeave" xml:space="preserve">
+    <value>Ücretsiz İzin</value>
+  </data>
+  <data name="User3" xml:space="preserve">
+    <value>Kullanıcı</value>
+  </data>
+  <data name="Warning" xml:space="preserve">
+    <value>Uyarı</value>
+  </data>
+  <data name="SearchByFirstNameLastNameOrNationalID" xml:space="preserve">
+    <value>Uyarı : Ad, Soyad ve TC Kimlik Kabul Edilmektedir.
+
+</value>
+  </data>
+  <data name="AnSQLAdministratorAccountCannotBeUsedByTheApplicationConfigureAnAccountWithLimited" xml:space="preserve">
+    <value>Uygulama bağlantısında SQL yönetici hesabı kullanılamaz. Sınırlı yetkili bir hesap yapılandırın.</value>
+  </data>
+  <data name="TheApplicationAccountCannotBeSysadminOrDbOwnerConfigureAnAccountWithLimitedPermiss" xml:space="preserve">
+    <value>Uygulama hesabı sysadmin veya db_owner olmamalıdır. Sınırlı yetkili hesap yapılandırın.</value>
+  </data>
+  <data name="Shift" xml:space="preserve">
+    <value>Vardiya</value>
+  </data>
+  <data name="ShiftName" xml:space="preserve">
+    <value>Vardiya Adı</value>
+  </data>
+  <data name="ShiftName2" xml:space="preserve">
+    <value>Vardiya Adı </value>
+  </data>
+  <data name="SelectShift" xml:space="preserve">
+    <value>Vardiya Seç</value>
+  </data>
+  <data name="ShiftManagement" xml:space="preserve">
+    <value>Vardiya Yönetim Ekranı</value>
+  </data>
+  <data name="ShiftManagement2" xml:space="preserve">
+    <value>Vardiya Yönetimi</value>
+  </data>
+  <data name="ShiftNameIsRequired" xml:space="preserve">
+    <value>Vardiya adı boş bırakılamaz.</value>
+  </data>
+  <data name="ShiftSavedID" xml:space="preserve">
+    <value>Vardiya başarıyla kaydedildi. (ID: {0})</value>
+  </data>
+  <data name="ShiftUpdated" xml:space="preserve">
+    <value>Vardiya güncellendi.</value>
+  </data>
+  <data name="ShiftsCouldNotBeLoaded" xml:space="preserve">
+    <value>Vardiya listesi yüklenirken hata:
+</value>
+  </data>
+  <data name="ShiftDeactivated" xml:space="preserve">
+    <value>Vardiya pasife alındı.</value>
+  </data>
+  <data name="SelectAShift" xml:space="preserve">
+    <value>Vardiya seçilmedi.</value>
+  </data>
+  <data name="ShiftAndHours" xml:space="preserve">
+    <value>Vardiya ve Saatleri</value>
+  </data>
+  <data name="Shift2" xml:space="preserve">
+    <value>Vardiya: {0}  |  </value>
+  </data>
+  <data name="DataExceedsExcelSRowOrColumnLimit" xml:space="preserve">
+    <value>Veri Excel satır/sütun sınırını aşıyor.</value>
+  </data>
+  <data name="Database" xml:space="preserve">
+    <value>Veritabanı</value>
+  </data>
+  <data name="TheDatabaseConnectionIsNotConfigured" xml:space="preserve">
+    <value>Veritabanı bağlantısı yapılandırılmamış.</value>
+  </data>
+  <data name="WindowsAuthentication" xml:space="preserve">
+    <value>Windows Kimlik Doğrulaması</value>
+  </data>
+  <data name="Print" xml:space="preserve">
+    <value>Yazdır</value>
+  </data>
+  <data name="ThereIsNoVisibleDataToPrint" xml:space="preserve">
+    <value>Yazdırılacak görünür veri bulunamadı.</value>
+  </data>
+  <data name="NewUser" xml:space="preserve">
+    <value>Yeni Kullanıcı</value>
+  </data>
+  <data name="Refresh" xml:space="preserve">
+    <value>Yenile</value>
+  </data>
+  <data name="AnnualLeave2" xml:space="preserve">
+    <value>Yıllık İzin</value>
+  </data>
+  <data name="AnnualLeaveAllowance2" xml:space="preserve">
+    <value>Yıllık İzin Hakkı</value>
+  </data>
+  <data name="Employees" xml:space="preserve">
+    <value>{0} Personel</value>
+  </data>
+  <data name="CheckedInTime" xml:space="preserve">
+    <value>{0} giriş kaydı oluşturuldu.
+Saat: {1:HH:mm}</value>
+  </data>
+  <data name="RecordCheckInFor" xml:space="preserve">
+    <value>{0} için giriş kaydedilecek.
+</value>
+  </data>
+  <data name="RecordCheckOutFor" xml:space="preserve">
+    <value>{0} için çıkış kaydedilecek.
+</value>
+  </data>
+  <data name="InsufficientRemainingAnnualLeaveFor" xml:space="preserve">
+    <value>{0} yılı için kalan yıllık izin hakkı yetersiz.</value>
+  </data>
+  <data name="CheckedOutTime" xml:space="preserve">
+    <value>{0} çıkış kaydı oluşturuldu.
+Saat: {1:HH:mm}</value>
+  </data>
+  <data name="SignedOut" xml:space="preserve">
+    <value>{0} çıkış yaptı.</value>
+  </data>
+  <data name="HMin" xml:space="preserve">
+    <value>{0}s {1}dk</value>
+  </data>
+  <data name="Employee4" xml:space="preserve">
+    <value>Çalışan</value>
+  </data>
+  <data name="Workdays" xml:space="preserve">
+    <value>Çalışma Günü</value>
+  </data>
+  <data name="WorkDuration" xml:space="preserve">
+    <value>Çalışma Süresi</value>
+  </data>
+  <data name="WorkTimesOrShiftBreakDurationAreInvalid" xml:space="preserve">
+    <value>Çalışma zamanı veya vardiya mola bilgileri geçersiz.</value>
+  </data>
+  <data name="NoActiveEmployeeWhoHasStartedEmploymentWasFound" xml:space="preserve">
+    <value>Çalışmaya başlamış aktif personel bulunamadı.</value>
+  </data>
+  <data name="Wed" xml:space="preserve">
+    <value>Çar</value>
+  </data>
+  <data name="Wednesday" xml:space="preserve">
+    <value>Çarşamba</value>
+  </data>
+  <data name="Exit" xml:space="preserve">
+    <value>Çıkış</value>
+  </data>
+  <data name="CheckOutSuccessful" xml:space="preserve">
+    <value>Çıkış Başarılı</value>
+  </data>
+  <data name="ConfirmCheckOut" xml:space="preserve">
+    <value>Çıkış Onayı</value>
+  </data>
+  <data name="CheckOutTime" xml:space="preserve">
+    <value>Çıkış Saati</value>
+  </data>
+  <data name="CheckOut" xml:space="preserve">
+    <value>Çıkış Yap</value>
+  </data>
+  <data name="CheckOutFailed" xml:space="preserve">
+    <value>Çıkış kaydı oluşturulamadı:
+</value>
+  </data>
+  <data name="CheckOut2" xml:space="preserve">
+    <value>Çıkış: {0:hh\:mm}</value>
+  </data>
+  <data name="GenerateAReportContainingRecordsFirst" xml:space="preserve">
+    <value>Önce kayıt içeren bir rapor oluşturun.</value>
+  </data>
+  <data name="SummaryReportFailed" xml:space="preserve">
+    <value>Özet raporu oluşturulamadı:
+</value>
+  </data>
+  <data name="UnpaidLeave2" xml:space="preserve">
+    <value>Ücretsiz İzin</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>İptal</value>
+  </data>
+  <data name="Cancelled2" xml:space="preserve">
+    <value>İptal Edildi</value>
+  </data>
+  <data name="ConfirmCancellation" xml:space="preserve">
+    <value>İptal Onayı</value>
+  </data>
+  <data name="CancellationFailed" xml:space="preserve">
+    <value>İptal sırasında hata:
+</value>
+  </data>
+  <data name="StatisticsCouldNotBeLoaded" xml:space="preserve">
+    <value>İstatistik yüklenirken hata: </value>
+  </data>
+  <data name="LeaveDescription" xml:space="preserve">
+    <value>İzin Açıklama</value>
+  </data>
+  <data name="LeaveStartDate" xml:space="preserve">
+    <value>İzin Başlangıç Tarihi
+
+</value>
+  </data>
+  <data name="LeaveEndDate" xml:space="preserve">
+    <value>İzin Bitiş Tarihi
+
+</value>
+  </data>
+  <data name="LeaveDays" xml:space="preserve">
+    <value>İzin Günü</value>
+  </data>
+  <data name="LeaveAllowance" xml:space="preserve">
+    <value>İzin Hakkı</value>
+  </data>
+  <data name="SaveLeave" xml:space="preserve">
+    <value>İzin Kaydet</value>
+  </data>
+  <data name="LeaveReport" xml:space="preserve">
+    <value>İzin Raporu</value>
+  </data>
+  <data name="RejectLeave" xml:space="preserve">
+    <value>İzin Reddi</value>
+  </data>
+  <data name="LeaveType" xml:space="preserve">
+    <value>İzin Türü</value>
+  </data>
+  <data name="SelectLeaveType" xml:space="preserve">
+    <value>İzin Türü Seç</value>
+  </data>
+  <data name="LeaveManagement" xml:space="preserve">
+    <value>İzin Yönetim Ekranı</value>
+  </data>
+  <data name="LeaveManagement2" xml:space="preserve">
+    <value>İzin Yönetimi</value>
+  </data>
+  <data name="ThisLeaveStatusDoesNotAllowTheOperationRefreshTheList" xml:space="preserve">
+    <value>İzin durumu bu işleme uygun değil. Listeyi yenileyin.</value>
+  </data>
+  <data name="LeaveStatusHasChangedRefreshTheList" xml:space="preserve">
+    <value>İzin durumu değişmiş; listeyi yenileyin.</value>
+  </data>
+  <data name="TheLeaveRecordHasChangedRefreshTheList" xml:space="preserve">
+    <value>İzin kaydı değişmiş; listeyi yenileyin.</value>
+  </data>
+  <data name="LeaveCouldNotBeSaved" xml:space="preserve">
+    <value>İzin kaydı sırasında hata:
+</value>
+  </data>
+  <data name="LeaveRequestsCouldNotBeLoaded" xml:space="preserve">
+    <value>İzin listesi yüklenirken hata:
+</value>
+  </data>
+  <data name="LeaveReportFailed" xml:space="preserve">
+    <value>İzin raporu oluşturulamadı:
+</value>
+  </data>
+  <data name="LeaveRequestCancelled" xml:space="preserve">
+    <value>İzin talebi iptal edildi.</value>
+  </data>
+  <data name="LeaveRequestSavedID" xml:space="preserve">
+    <value>İzin talebi oluşturuldu. (ID: {0})</value>
+  </data>
+  <data name="LeaveRequestApproved" xml:space="preserve">
+    <value>İzin talebi onaylandı.</value>
+  </data>
+  <data name="LeaveRequestRejected" xml:space="preserve">
+    <value>İzin talebi reddedildi.</value>
+  </data>
+  <data name="InvalidLeaveDateRange" xml:space="preserve">
+    <value>İzin tarih aralığı geçersiz.</value>
+  </data>
+  <data name="SelectALeaveType" xml:space="preserve">
+    <value>İzin türü seçilmedi.</value>
+  </data>
+  <data name="CancelLeave" xml:space="preserve">
+    <value>İzin İptal</value>
+  </data>
+  <data name="EmploymentStart" xml:space="preserve">
+    <value>İşe Giriş</value>
+  </data>
+  <data name="EmploymentStartDate" xml:space="preserve">
+    <value>İşe Giriş Tarihi</value>
+  </data>
+  <data name="AtWorkCheckedOutNotArrived" xml:space="preserve">
+    <value>İşyerinde / Çıkış Yapıldı / Henüz Gelmedi</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Şifre</value>
+  </data>
+  <data name="PasswordMustContain850Characters" xml:space="preserve">
+    <value>Şifre 8–50 karakter olmalıdır.</value>
+  </data>
+  <data name="PasswordIsRequired" xml:space="preserve">
+    <value>Şifre boş bırakılamaz.</value>
+  </data>
+  <data name="PasswordChanged" xml:space="preserve">
+    <value>Şifre değiştirildi</value>
+  </data>
+  <data name="NotCheckedIn" xml:space="preserve">
+    <value>● Henüz giriş yapmadı</value>
+  </data>
+  <data name="CheckedOut" xml:space="preserve">
+    <value>● Çıkış yapıldı</value>
+  </data>
+  <data name="AtWork" xml:space="preserve">
+    <value>● İşyerinde</value>
+  </data>
+  <data name="EndDateCannotBeEarlierThanStartDate2" xml:space="preserve">
+    <value>⚠ Bitiş tarihi başlangıçtan önce olamaz!</value>
+  </data>
+  <data name="SignInRequired" xml:space="preserve">
+    <value>Bu işlem için giriş yapmalısınız.</value>
+  </data>
+  <data name="InsufficientPermissions" xml:space="preserve">
+    <value>Bu işlem için yetkiniz yok.</value>
+  </data>
+  <data name="RoleAdmin" xml:space="preserve">
+    <value>Sistem Yöneticisi</value>
+  </data>
+  <data name="RoleManager" xml:space="preserve">
+    <value>İK Yöneticisi</value>
+  </data>
+  <data name="RoleEmployee" xml:space="preserve">
+    <value>İK Çalışanı</value>
+  </data>
+  <data name="EmployeeDetailsAreIncomplete" xml:space="preserve"><value>Personel bilgileri eksik.</value></data>
+  <data name="RequiredTextMaximum" xml:space="preserve"><value>{0} zorunludur ve en fazla {1} karakter olabilir.</value></data>
+  <data name="TextMaximum" xml:space="preserve"><value>{0} en fazla {1} karakter olabilir.</value></data>
+  <data name="PhotoPath" xml:space="preserve"><value>Fotoğraf yolu</value></data>
+  <data name="BirthDateMustPrecedeEmployment" xml:space="preserve"><value>Doğum tarihi gelecekte veya işe giriş tarihinden sonra olamaz.</value></data>
+  <data name="SelectActiveDepartmentAndPosition" xml:space="preserve"><value>Seçilen departman ve pozisyon aktif ve birbiriyle uyumlu olmalıdır.</value></data>
+  <data name="AssignedShiftCannotBeDeactivated" xml:space="preserve"><value>Bu vardiyaya bağlı aktif personel var. Önce personeli başka bir vardiyaya aktarın.</value></data>
+  <data name="AuditWriteFailed" xml:space="preserve"><value>Denetim kaydı yazılamadı. İşlem tamamlanmadı; bağlantı ve kayıt yetkilerini kontrol edin.</value></data>
+  <data name="SqlAuthenticationRequired" xml:space="preserve"><value>Sunucu, veritabanı, SQL kullanıcı adı ve şifre zorunludur. SQL Server Authentication kullanın.</value></data>
+  <data name="TrustServerCertificate" xml:space="preserve"><value>Sunucu sertifikasına güven</value></data>
+  <data name="SqlServerAuthentication" xml:space="preserve"><value>SQL Server Authentication</value></data>
 </root>

@@ -1,0 +1,1205 @@
+<?xml version='1.0' encoding='utf-8'?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Created" xml:space="preserve">
+    <value>
+Created: {0:dd.MM.yyyy HH:mm}</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>   Date: {0:dd.MM.yyyy} - {1:dd.MM.yyyy}</value>
+  </data>
+  <data name="Users" xml:space="preserve">
+    <value> users</value>
+  </data>
+  <data name="DeactivateEmployee" xml:space="preserve">
+    <value>Deactivate employee '{0} {1}'?</value>
+  </data>
+  <data name="DeactivateShift" xml:space="preserve">
+    <value>Deactivate shift '{0}'?</value>
+  </data>
+  <data name="FirstName" xml:space="preserve">
+    <value>First name</value>
+  </data>
+  <data name="FirstName2" xml:space="preserve">
+    <value>First name</value>
+  </data>
+  <data name="FullName" xml:space="preserve">
+    <value>Full name</value>
+  </data>
+  <data name="FirstNameIsRequired" xml:space="preserve">
+    <value>First name is required.</value>
+  </data>
+  <data name="Administrator" xml:space="preserve">
+    <value>Administrator</value>
+  </data>
+  <data name="Address" xml:space="preserve">
+    <value>Address</value>
+  </data>
+  <data name="ThereIsNoDataToExport" xml:space="preserve">
+    <value>There is no data to export.</value>
+  </data>
+  <data name="ExportFailed" xml:space="preserve">
+    <value>Export failed:
+</value>
+  </data>
+  <data name="Active" xml:space="preserve">
+    <value>Active</value>
+  </data>
+  <data name="NoActiveLeaveTypeWasFound" xml:space="preserve">
+    <value>No active leave type was found.</value>
+  </data>
+  <data name="NoActiveEmployeeWasFound" xml:space="preserve">
+    <value>No active employee was found.</value>
+  </data>
+  <data name="NoActiveShiftWasFound" xml:space="preserve">
+    <value>No active shift was found.</value>
+  </data>
+  <data name="MainMenu" xml:space="preserve">
+    <value>Main menu</value>
+  </data>
+  <data name="CurrentTime" xml:space="preserve">
+    <value>Current time</value>
+  </data>
+  <data name="AnnualLeave" xml:space="preserve">
+    <value>Annual leave</value>
+  </data>
+  <data name="AnnualLeaveAllowance" xml:space="preserve">
+    <value>Annual leave allowance</value>
+  </data>
+  <data name="Approved" xml:space="preserve">
+    <value>Approved</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="Search2" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="SearchFailed" xml:space="preserve">
+    <value>Search failed:
+</value>
+  </data>
+  <data name="FindEmployee" xml:space="preserve">
+    <value>Find employee:</value>
+  </data>
+  <data name="MonthlyReport" xml:space="preserve">
+    <value>Monthly report: {0:MMMM yyyy}</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="DescriptionCannotExceed500Characters" xml:space="preserve">
+    <value>Description cannot exceed 500 characters.</value>
+  </data>
+  <data name="ConnectionSettings" xml:space="preserve">
+    <value>Connection settings</value>
+  </data>
+  <data name="ConnectionError" xml:space="preserve">
+    <value>Connection error: </value>
+  </data>
+  <data name="ConnectionSaved" xml:space="preserve">
+    <value>Connection saved.</value>
+  </data>
+  <data name="ConnectionFailedCheckTheServerDatabaseAndAccountPermissions" xml:space="preserve">
+    <value>Connection failed. Check the server, database and account permissions.</value>
+  </data>
+  <data name="TheConnectionIsConfiguredUsingAnEnvironmentVariableUpdateThatVariableToChangeTheCo" xml:space="preserve">
+    <value>The connection is configured using an environment variable. Update that variable to change the connection.</value>
+  </data>
+  <data name="SaveConnection" xml:space="preserve">
+    <value>Save connection</value>
+  </data>
+  <data name="Success" xml:space="preserve">
+    <value>Success</value>
+  </data>
+  <data name="SuccessfulSignIn" xml:space="preserve">
+    <value>Successful sign-in</value>
+  </data>
+  <data name="Start" xml:space="preserve">
+    <value>Start</value>
+  </data>
+  <data name="StartTime" xml:space="preserve">
+    <value>Start time</value>
+  </data>
+  <data name="StartDate" xml:space="preserve">
+    <value>Start date</value>
+  </data>
+  <data name="Pending" xml:space="preserve">
+    <value>Pending</value>
+  </data>
+  <data name="Information" xml:space="preserve">
+    <value>Information</value>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>Details</value>
+  </data>
+  <data name="NoPrinterIsAvailableOnThisComputer" xml:space="preserve">
+    <value>No printer is available on this computer.</value>
+  </data>
+  <data name="SelectARole" xml:space="preserve">
+    <value>Select a role.</value>
+  </data>
+  <data name="End" xml:space="preserve">
+    <value>End</value>
+  </data>
+  <data name="EndTime" xml:space="preserve">
+    <value>End time</value>
+  </data>
+  <data name="EndDate" xml:space="preserve">
+    <value>End date</value>
+  </data>
+  <data name="EndDateCannotBeEarlierThanStartDate" xml:space="preserve">
+    <value>End date cannot be earlier than start date.</value>
+  </data>
+  <data name="ThisNationalIDBelongsToAnotherEmployee" xml:space="preserve">
+    <value>This national ID belongs to another employee.</value>
+  </data>
+  <data name="ThisNationalIDIsAlreadyRegistered" xml:space="preserve">
+    <value>This national ID is already registered.</value>
+  </data>
+  <data name="AdministratorAccessIsRequiredForThisOperation" xml:space="preserve">
+    <value>Administrator access is required for this operation.</value>
+  </data>
+  <data name="AnActiveAdministratorAccountIsRequiredForThisOperation" xml:space="preserve">
+    <value>An active administrator account is required for this operation.</value>
+  </data>
+  <data name="ThisUsernameIsAlreadyRegistered" xml:space="preserve">
+    <value>This username is already registered.</value>
+  </data>
+  <data name="ThisEmployeeHasNoOpenAttendanceRecord" xml:space="preserve">
+    <value>This employee has no open attendance record.</value>
+  </data>
+  <data name="AnOverlappingLeaveRequestExistsForTheseDates" xml:space="preserve">
+    <value>An overlapping leave request exists for these dates.</value>
+  </data>
+  <data name="AnAttendanceRecordAlreadyExistsForThisShiftDayOrAnEarlierRecordIsStillOpen" xml:space="preserve">
+    <value>An attendance record already exists for this shift day, or an earlier record is still open.</value>
+  </data>
+  <data name="AbsentToday" xml:space="preserve">
+    <value>Absent today</value>
+  </data>
+  <data name="CheckedInToday" xml:space="preserve">
+    <value>Checked in today</value>
+  </data>
+  <data name="TodaySCheckIns" xml:space="preserve">
+    <value>Today's check-ins</value>
+  </data>
+  <data name="OnLeaveToday" xml:space="preserve">
+    <value>On leave today</value>
+  </data>
+  <data name="TodaySAndOpenRecordsDate" xml:space="preserve">
+    <value>Today's and open records: {0}  |  Date: {1:dd.MM.yyyy}</value>
+  </data>
+  <data name="SelectedEmployee" xml:space="preserve">
+    <value>Selected employee</value>
+  </data>
+  <data name="Employee" xml:space="preserve">
+    <value>Employee</value>
+  </data>
+  <data name="Cancelled" xml:space="preserve">
+    <value>Cancelled</value>
+  </data>
+  <data name="Gender" xml:space="preserve">
+    <value>Gender</value>
+  </data>
+  <data name="Sat" xml:space="preserve">
+    <value>Sat</value>
+  </data>
+  <data name="SelectSatSun" xml:space="preserve">
+    <value>Select Sat–Sun</value>
+  </data>
+  <data name="Fri" xml:space="preserve">
+    <value>Fri</value>
+  </data>
+  <data name="Friday" xml:space="preserve">
+    <value>Friday</value>
+  </data>
+  <data name="Saturday" xml:space="preserve">
+    <value>Saturday</value>
+  </data>
+  <data name="Department" xml:space="preserve">
+    <value>Department</value>
+  </data>
+  <data name="SelectDepartment" xml:space="preserve">
+    <value>Select department</value>
+  </data>
+  <data name="SelectADepartment" xml:space="preserve">
+    <value>Select a department.</value>
+  </data>
+  <data name="DepartmentAndPosition" xml:space="preserve">
+    <value>Department and position</value>
+  </data>
+  <data name="Absence" xml:space="preserve">
+    <value>Absence</value>
+  </data>
+  <data name="AbsenceReport" xml:space="preserve">
+    <value>Absence report</value>
+  </data>
+  <data name="AbsenceReportFailed" xml:space="preserve">
+    <value>Absence report failed:
+</value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="TheFileExtensionMustBeXlsxOrCsv" xml:space="preserve">
+    <value>The file extension must be .xlsx or .csv.</value>
+  </data>
+  <data name="DateOfBirth" xml:space="preserve">
+    <value>Date of birth</value>
+  </data>
+  <data name="MaternityLeave" xml:space="preserve">
+    <value>Maternity leave</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="Email4" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="Email2" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="MissingInformation" xml:space="preserve">
+    <value>Missing information</value>
+  </data>
+  <data name="Email3" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="Employee2" xml:space="preserve">
+    <value>Employee</value>
+  </data>
+  <data name="SelectAtLeastOneWorkingDay" xml:space="preserve">
+    <value>Select at least one working day.</value>
+  </data>
+  <data name="Male" xml:space="preserve">
+    <value>Male</value>
+  </data>
+  <data name="LeftEarly" xml:space="preserve">
+    <value>Left early?</value>
+  </data>
+  <data name="EarlyDepartures" xml:space="preserve">
+    <value>Early departures</value>
+  </data>
+  <data name="LeftEarly2" xml:space="preserve">
+    <value>Left early?</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="ExcelFileXlsxXlsxCSVFileCsvCsv" xml:space="preserve">
+    <value>Excel file (*.xlsx)|*.xlsx|CSV file (*.csv)|*.csv</value>
+  </data>
+  <data name="ExportToExcelCSV" xml:space="preserve">
+    <value>Export to Excel / CSV</value>
+  </data>
+  <data name="ClearForm" xml:space="preserve">
+    <value>Clear form</value>
+  </data>
+  <data name="SelectPhoto" xml:space="preserve">
+    <value>Select photo</value>
+  </data>
+  <data name="ArrivedLate" xml:space="preserve">
+    <value>Arrived late?</value>
+  </data>
+  <data name="LateArrivals" xml:space="preserve">
+    <value>Late arrivals</value>
+  </data>
+  <data name="Late" xml:space="preserve">
+    <value>Late?</value>
+  </data>
+  <data name="EnterAValidEmailAddress" xml:space="preserve">
+    <value>Enter a valid email address.</value>
+  </data>
+  <data name="EnterAValidBreakDurationInMinutes" xml:space="preserve">
+    <value>Enter a valid break duration in minutes.</value>
+  </data>
+  <data name="SelectAValidReportType" xml:space="preserve">
+    <value>Select a valid report type.</value>
+  </data>
+  <data name="SelectAValidRole" xml:space="preserve">
+    <value>Select a valid role.</value>
+  </data>
+  <data name="EnterAValidAnnualLeaveAllowance" xml:space="preserve">
+    <value>Enter a valid annual leave allowance.</value>
+  </data>
+  <data name="CheckIn" xml:space="preserve">
+    <value>Check-in</value>
+  </data>
+  <data name="SignIn" xml:space="preserve">
+    <value>Sign in</value>
+  </data>
+  <data name="Attendance" xml:space="preserve">
+    <value>Attendance</value>
+  </data>
+  <data name="CheckInSuccessful" xml:space="preserve">
+    <value>Check-in successful</value>
+  </data>
+  <data name="ConfirmCheckIn" xml:space="preserve">
+    <value>Confirm check-in</value>
+  </data>
+  <data name="CheckIn2" xml:space="preserve">
+    <value>Check in</value>
+  </data>
+  <data name="RecordedBy" xml:space="preserve">
+    <value>Recorded by</value>
+  </data>
+  <data name="AnotherOperationHasAlreadyClosedThisAttendanceRecord" xml:space="preserve">
+    <value>Another operation has already closed this attendance record.</value>
+  </data>
+  <data name="CheckInFailed" xml:space="preserve">
+    <value>Check-in failed:
+</value>
+  </data>
+  <data name="AttendanceTimeOrShiftSnapshotIsMissingCheckTheDatabaseUpdate" xml:space="preserve">
+    <value>Attendance time or shift snapshot is missing. Check the database update.</value>
+  </data>
+  <data name="AttendanceReportFailed" xml:space="preserve">
+    <value>Attendance report failed:
+</value>
+  </data>
+  <data name="Attendance2" xml:space="preserve">
+    <value>Attendance</value>
+  </data>
+  <data name="CheckIn3" xml:space="preserve">
+    <value>Check-in: {0:hh\:mm}  —  </value>
+  </data>
+  <data name="Days" xml:space="preserve">
+    <value>Days</value>
+  </data>
+  <data name="Update" xml:space="preserve">
+    <value>Update</value>
+  </data>
+  <data name="UpdateFailed" xml:space="preserve">
+    <value>Update failed:
+</value>
+  </data>
+  <data name="WorkingDays" xml:space="preserve">
+    <value>Working days</value>
+  </data>
+  <data name="DailyAttendance" xml:space="preserve">
+    <value>Daily attendance</value>
+  </data>
+  <data name="DailyRecordsCouldNotBeLoaded" xml:space="preserve">
+    <value>Daily records could not be loaded:
+</value>
+  </data>
+  <data name="SickLeave" xml:space="preserve">
+    <value>Sick leave</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="ErrorMessage" xml:space="preserve">
+    <value>Error message</value>
+  </data>
+  <data name="Error2" xml:space="preserve">
+    <value>Error:
+</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="Welcome" xml:space="preserve">
+    <value>Welcome, {0}</value>
+  </data>
+  <data name="CellTextExceedsExcelS32767CharacterLimit" xml:space="preserve">
+    <value>Cell text exceeds Excel's 32767-character limit.</value>
+  </data>
+  <data name="CellTextCouldNotFitOnThePage" xml:space="preserve">
+    <value>Cell text could not fit on the page.</value>
+  </data>
+  <data name="Female" xml:space="preserve">
+    <value>Female</value>
+  </data>
+  <data name="RemainingAnnualLeaveDays" xml:space="preserve">
+    <value>Remaining annual leave: {0} days</value>
+  </data>
+  <data name="RemainingAnnualLeave" xml:space="preserve">
+    <value>Remaining annual leave: —</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="SaveFailed" xml:space="preserve">
+    <value>Save failed:
+</value>
+  </data>
+  <data name="RecordCouldNotBeLoaded" xml:space="preserve">
+    <value>Record could not be loaded:
+</value>
+  </data>
+  <data name="ThePageIsTooNarrowForTheReportColumns" xml:space="preserve">
+    <value>The page is too narrow for the report columns.</value>
+  </data>
+  <data name="ThePageIsTooShortForTheReport" xml:space="preserve">
+    <value>The page is too short for the report.</value>
+  </data>
+  <data name="User" xml:space="preserve">
+    <value>User</value>
+  </data>
+  <data name="User2" xml:space="preserve">
+    <value>User</value>
+  </data>
+  <data name="Username" xml:space="preserve">
+    <value>Username</value>
+  </data>
+  <data name="Username2" xml:space="preserve">
+    <value>Username:</value>
+  </data>
+  <data name="UserDetails" xml:space="preserve">
+    <value>User details</value>
+  </data>
+  <data name="AddUser" xml:space="preserve">
+    <value>Add user</value>
+  </data>
+  <data name="UserManagement" xml:space="preserve">
+    <value>User management</value>
+  </data>
+  <data name="Username3" xml:space="preserve">
+    <value>Username</value>
+  </data>
+  <data name="UsernameIsRequired" xml:space="preserve">
+    <value>Username is required.</value>
+  </data>
+  <data name="InvalidUsernameOrPassword" xml:space="preserve">
+    <value>Invalid username or password.</value>
+  </data>
+  <data name="UserDetailsAreIncomplete" xml:space="preserve">
+    <value>User details are incomplete.</value>
+  </data>
+  <data name="UserAdded" xml:space="preserve">
+    <value>User added.</value>
+  </data>
+  <data name="UserCouldNotBeAdded" xml:space="preserve">
+    <value>User could not be added.</value>
+  </data>
+  <data name="UsersCouldNotBeLoaded" xml:space="preserve">
+    <value>Users could not be loaded.</value>
+  </data>
+  <data name="TheDatabaseCouldNotBeReachedWhileOpeningUserManagement" xml:space="preserve">
+    <value>The database could not be reached while opening user management.</value>
+  </data>
+  <data name="AdministratorAccessIsRequiredForUserManagement" xml:space="preserve">
+    <value>Administrator access is required for user management.</value>
+  </data>
+  <data name="Users2" xml:space="preserve">
+    <value>Users</value>
+  </data>
+  <data name="RecordCount" xml:space="preserve">
+    <value>Record count</value>
+  </data>
+  <data name="SelectAUserFromTheList" xml:space="preserve">
+    <value>Select a user from the list.</value>
+  </data>
+  <data name="FilterByEmployee" xml:space="preserve">
+    <value>Filter by employee</value>
+  </data>
+  <data name="SelectAnEmployeeToUpdate" xml:space="preserve">
+    <value>Select an employee to update.</value>
+  </data>
+  <data name="SelectAShiftToUpdate" xml:space="preserve">
+    <value>Select a shift to update.</value>
+  </data>
+  <data name="EnterAnEmployeeNameOrNationalID" xml:space="preserve">
+    <value>Enter an employee name or national ID.</value>
+  </data>
+  <data name="SelectAnEmployeeToDeactivate" xml:space="preserve">
+    <value>Select an employee to deactivate.</value>
+  </data>
+  <data name="SelectAShiftToDeactivate" xml:space="preserve">
+    <value>Select a shift to deactivate.</value>
+  </data>
+  <data name="MaternityLeave2" xml:space="preserve">
+    <value>Maternity leave</value>
+  </data>
+  <data name="Excuse" xml:space="preserve">
+    <value>Excuse</value>
+  </data>
+  <data name="PersonalLeave" xml:space="preserve">
+    <value>Personal leave</value>
+  </data>
+  <data name="Overtime" xml:space="preserve">
+    <value>Overtime</value>
+  </data>
+  <data name="BreakMin" xml:space="preserve">
+    <value>Break (min)</value>
+  </data>
+  <data name="BreakDuration" xml:space="preserve">
+    <value>Break duration</value>
+  </data>
+  <data name="BreakDurationMustBeShorterThanTheShift" xml:space="preserve">
+    <value>Break duration must be shorter than the shift.</value>
+  </data>
+  <data name="Approve" xml:space="preserve">
+    <value>Approve</value>
+  </data>
+  <data name="ApprovalFailed" xml:space="preserve">
+    <value>Approval failed:
+</value>
+  </data>
+  <data name="Approve2" xml:space="preserve">
+    <value>Approve</value>
+  </data>
+  <data name="Approved2" xml:space="preserve">
+    <value>Approved</value>
+  </data>
+  <data name="CalculatedDays" xml:space="preserve">
+    <value>Calculated days</value>
+  </data>
+  <data name="Deactivated" xml:space="preserve">
+    <value>Deactivated</value>
+  </data>
+  <data name="Sun" xml:space="preserve">
+    <value>Sun</value>
+  </data>
+  <data name="Sunday" xml:space="preserve">
+    <value>Sunday</value>
+  </data>
+  <data name="Monday" xml:space="preserve">
+    <value>Monday</value>
+  </data>
+  <data name="Pending2" xml:space="preserve">
+    <value>Pending</value>
+  </data>
+  <data name="Thu" xml:space="preserve">
+    <value>Thu</value>
+  </data>
+  <data name="PersonalLeave2" xml:space="preserve">
+    <value>Personal leave</value>
+  </data>
+  <data name="FindEmployee2" xml:space="preserve">
+    <value>Find employee</value>
+  </data>
+  <data name="EmployeeNotFound" xml:space="preserve">
+    <value>Employee not found.</value>
+  </data>
+  <data name="EmployeeReport" xml:space="preserve">
+    <value>Employee report</value>
+  </data>
+  <data name="SelectEmployee" xml:space="preserve">
+    <value>Select employee</value>
+  </data>
+  <data name="SelectEmployee2" xml:space="preserve">
+    <value>Select employee</value>
+  </data>
+  <data name="EmployeeSavedID" xml:space="preserve">
+    <value>Employee saved. (ID: {0})</value>
+  </data>
+  <data name="EmployeeDetailsUpdated" xml:space="preserve">
+    <value>Employee details updated.</value>
+  </data>
+  <data name="EmployeesCouldNotBeLoaded" xml:space="preserve">
+    <value>Employees could not be loaded:
+</value>
+  </data>
+  <data name="EmployeeDeactivated" xml:space="preserve">
+    <value>Employee deactivated.</value>
+  </data>
+  <data name="SelectEmployeeAllFullName" xml:space="preserve">
+    <value>Select employee (All / Full name)</value>
+  </data>
+  <data name="SelectAnEmployee" xml:space="preserve">
+    <value>Select an employee.</value>
+  </data>
+  <data name="EmployeeSummary" xml:space="preserve">
+    <value>Employee summary</value>
+  </data>
+  <data name="Employee3" xml:space="preserve">
+    <value>Employee: </value>
+  </data>
+  <data name="RemainingAnnualLeave2" xml:space="preserve">
+    <value>Remaining annual leave</value>
+  </data>
+  <data name="Employees2" xml:space="preserve">
+    <value>Employees</value>
+  </data>
+  <data name="Thursday" xml:space="preserve">
+    <value>Thursday</value>
+  </data>
+  <data name="Position" xml:space="preserve">
+    <value>Position</value>
+  </data>
+  <data name="SelectPosition" xml:space="preserve">
+    <value>Select position</value>
+  </data>
+  <data name="SelectAPosition" xml:space="preserve">
+    <value>Select a position.</value>
+  </data>
+  <data name="Mon" xml:space="preserve">
+    <value>Mon</value>
+  </data>
+  <data name="SelectMonFri" xml:space="preserve">
+    <value>Select Mon–Fri</value>
+  </data>
+  <data name="Report" xml:space="preserve">
+    <value>Report</value>
+  </data>
+  <data name="Reports" xml:space="preserve">
+    <value>Reports</value>
+  </data>
+  <data name="GenerateReport" xml:space="preserve">
+    <value>Generate report</value>
+  </data>
+  <data name="ReportDate" xml:space="preserve">
+    <value>Report date: {0:dd.MM.yyyy HH:mm}</value>
+  </data>
+  <data name="SelectReportType" xml:space="preserve">
+    <value>Select report type</value>
+  </data>
+  <data name="PrintPreview" xml:space="preserve">
+    <value>Print preview</value>
+  </data>
+  <data name="ReportSaved" xml:space="preserve">
+    <value>Report saved:
+{0}</value>
+  </data>
+  <data name="ReportCouldNotBeGenerated" xml:space="preserve">
+    <value>Report could not be generated:
+</value>
+  </data>
+  <data name="ReportCouldNotBePrinted" xml:space="preserve">
+    <value>Report could not be printed:
+</value>
+  </data>
+  <data name="ReportAccessCouldNotBeVerified" xml:space="preserve">
+    <value>Report access could not be verified.</value>
+  </data>
+  <data name="Reports2" xml:space="preserve">
+    <value>Reports</value>
+  </data>
+  <data name="AdministratorAccessIsRequiredForReports" xml:space="preserve">
+    <value>Administrator access is required for reports.</value>
+  </data>
+  <data name="RejectionFailed" xml:space="preserve">
+    <value>Rejection failed:
+</value>
+  </data>
+  <data name="RejectionReasonIsRequired" xml:space="preserve">
+    <value>Rejection reason is required.</value>
+  </data>
+  <data name="RejectionReasonIsRequiredAndCannotExceed500Characters" xml:space="preserve">
+    <value>Rejection reason is required and cannot exceed 500 characters.</value>
+  </data>
+  <data name="EnterTheRejectionReason" xml:space="preserve">
+    <value>Enter the rejection reason:</value>
+  </data>
+  <data name="Rejected" xml:space="preserve">
+    <value>Rejected</value>
+  </data>
+  <data name="Reject" xml:space="preserve">
+    <value>Reject</value>
+  </data>
+  <data name="Rejected2" xml:space="preserve">
+    <value>Rejected</value>
+  </data>
+  <data name="ImageFilesJpgJpegPngBmp" xml:space="preserve">
+    <value>Image files|*.jpg;*.jpeg;*.png;*.bmp</value>
+  </data>
+  <data name="Role" xml:space="preserve">
+    <value>Role</value>
+  </data>
+  <data name="UpdateRole" xml:space="preserve">
+    <value>Update role</value>
+  </data>
+  <data name="RoleUpdated" xml:space="preserve">
+    <value>Role updated.</value>
+  </data>
+  <data name="RoleCouldNotBeUpdated" xml:space="preserve">
+    <value>Role could not be updated.</value>
+  </data>
+  <data name="Role2" xml:space="preserve">
+    <value>Role: </value>
+  </data>
+  <data name="AnSQLAdministratorAccountCannotBeSavedAsAnApplicationSetting" xml:space="preserve">
+    <value>An SQL administrator account cannot be saved as an application setting.</value>
+  </data>
+  <data name="TimeDoYouConfirm" xml:space="preserve">
+    <value>Time: {0:HH:mm}
+
+Do you confirm?</value>
+  </data>
+  <data name="Tue" xml:space="preserve">
+    <value>Tue</value>
+  </data>
+  <data name="Tuesday" xml:space="preserve">
+    <value>Tuesday</value>
+  </data>
+  <data name="PageRecords" xml:space="preserve">
+    <value>Page {0}   |   {1} records</value>
+  </data>
+  <data name="Select" xml:space="preserve">
+    <value>Select</value>
+  </data>
+  <data name="TheSelectedUserWasNotFound" xml:space="preserve">
+    <value>The selected user was not found.</value>
+  </data>
+  <data name="YouCanChangeTheSelectedUserSRole" xml:space="preserve">
+    <value>You can change the selected user's role.</value>
+  </data>
+  <data name="TheSelectedPrinterIsUnavailable" xml:space="preserve">
+    <value>The selected printer is unavailable.</value>
+  </data>
+  <data name="DateRangeReportTime" xml:space="preserve">
+    <value>Date range / Report time</value>
+  </data>
+  <data name="CancelTheSelectedLeaveRequest" xml:space="preserve">
+    <value>Cancel the selected leave request?</value>
+  </data>
+  <data name="ApproveTheSelectedLeaveRequest" xml:space="preserve">
+    <value>Approve the selected leave request?</value>
+  </data>
+  <data name="ShiftCompletedNoCheckInOrApprovedLeaveFound" xml:space="preserve">
+    <value>Shift completed; no check-in or approved leave found.</value>
+  </data>
+  <data name="SickLeave2" xml:space="preserve">
+    <value>Sick leave</value>
+  </data>
+  <data name="Deactivate" xml:space="preserve">
+    <value>Deactivate</value>
+  </data>
+  <data name="ConfirmDeactivation" xml:space="preserve">
+    <value>Confirm deactivation</value>
+  </data>
+  <data name="DeactivationFailed" xml:space="preserve">
+    <value>Deactivation failed:
+</value>
+  </data>
+  <data name="ExitTheApplication" xml:space="preserve">
+    <value>Exit the application?</value>
+  </data>
+  <data name="TheLastActiveAdministratorCannotBeDemotedAssignAnotherActiveAdministratorFirst" xml:space="preserve">
+    <value>The last active administrator cannot be demoted. Assign another active administrator first.</value>
+  </data>
+  <data name="LastName" xml:space="preserve">
+    <value>Last name</value>
+  </data>
+  <data name="LastNameIsRequired" xml:space="preserve">
+    <value>Last name is required.</value>
+  </data>
+  <data name="Server" xml:space="preserve">
+    <value>Server</value>
+  </data>
+  <data name="NationalID2" xml:space="preserve">
+    <value>National ID</value>
+  </data>
+  <data name="NationalID" xml:space="preserve">
+    <value>National ID</value>
+  </data>
+  <data name="NationalIDMustContain11Digits" xml:space="preserve">
+    <value>National ID must contain 11 digits.</value>
+  </data>
+  <data name="NationalIDCanContainOnlyDigits" xml:space="preserve">
+    <value>National ID can contain only digits.</value>
+  </data>
+  <data name="Date2" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="DateAndTime" xml:space="preserve">
+    <value>Date and time</value>
+  </data>
+  <data name="Phone" xml:space="preserve">
+    <value>Phone</value>
+  </data>
+  <data name="Clear" xml:space="preserve">
+    <value>Clear</value>
+  </data>
+  <data name="TotalAbsenceDays" xml:space="preserve">
+    <value>Total absence days</value>
+  </data>
+  <data name="TotalAbsenceDays2" xml:space="preserve">
+    <value>Total absence: {0} days</value>
+  </data>
+  <data name="TotalRecords" xml:space="preserve">
+    <value>Total records</value>
+  </data>
+  <data name="TotalRecords2" xml:space="preserve">
+    <value>Total records: {0}</value>
+  </data>
+  <data name="OvertimeReportRows" xml:space="preserve">
+    <value>Overtime / Report rows</value>
+  </data>
+  <data name="TotalOvertimeHMin" xml:space="preserve">
+    <value>Total overtime: {0}h {1}min</value>
+  </data>
+  <data name="TotalEmployees" xml:space="preserve">
+    <value>Total employees</value>
+  </data>
+  <data name="TotalRequests" xml:space="preserve">
+    <value>Total requests: {0}</value>
+  </data>
+  <data name="Total" xml:space="preserve">
+    <value>Total: </value>
+  </data>
+  <data name="Total0Users" xml:space="preserve">
+    <value>Total: 0 users</value>
+  </data>
+  <data name="TotalDays" xml:space="preserve">
+    <value>Total: {0} days</value>
+  </data>
+  <data name="TotalRecords3" xml:space="preserve">
+    <value>Total: {0} records</value>
+  </data>
+  <data name="TotalShifts" xml:space="preserve">
+    <value>Total: {0} shifts</value>
+  </data>
+  <data name="AllPendingRequests" xml:space="preserve">
+    <value>All pending requests</value>
+  </data>
+  <data name="SelectAllDays" xml:space="preserve">
+    <value>Select all days</value>
+  </data>
+  <data name="ClearSelection" xml:space="preserve">
+    <value>Clear selection</value>
+  </data>
+  <data name="AllLeaveRequests" xml:space="preserve">
+    <value>All leave requests</value>
+  </data>
+  <data name="All" xml:space="preserve">
+    <value>All</value>
+  </data>
+  <data name="UnpaidLeave" xml:space="preserve">
+    <value>Unpaid leave</value>
+  </data>
+  <data name="User3" xml:space="preserve">
+    <value>User</value>
+  </data>
+  <data name="Warning" xml:space="preserve">
+    <value>Warning</value>
+  </data>
+  <data name="SearchByFirstNameLastNameOrNationalID" xml:space="preserve">
+    <value>Search by first name, last name or national ID.
+
+</value>
+  </data>
+  <data name="AnSQLAdministratorAccountCannotBeUsedByTheApplicationConfigureAnAccountWithLimited" xml:space="preserve">
+    <value>An SQL administrator account cannot be used by the application. Configure an account with limited permissions.</value>
+  </data>
+  <data name="TheApplicationAccountCannotBeSysadminOrDbOwnerConfigureAnAccountWithLimitedPermiss" xml:space="preserve">
+    <value>The application account cannot be sysadmin or db_owner. Configure an account with limited permissions.</value>
+  </data>
+  <data name="Shift" xml:space="preserve">
+    <value>Shift</value>
+  </data>
+  <data name="ShiftName" xml:space="preserve">
+    <value>Shift name</value>
+  </data>
+  <data name="ShiftName2" xml:space="preserve">
+    <value>Shift name</value>
+  </data>
+  <data name="SelectShift" xml:space="preserve">
+    <value>Select shift</value>
+  </data>
+  <data name="ShiftManagement" xml:space="preserve">
+    <value>Shift management</value>
+  </data>
+  <data name="ShiftManagement2" xml:space="preserve">
+    <value>Shift management</value>
+  </data>
+  <data name="ShiftNameIsRequired" xml:space="preserve">
+    <value>Shift name is required.</value>
+  </data>
+  <data name="ShiftSavedID" xml:space="preserve">
+    <value>Shift saved. (ID: {0})</value>
+  </data>
+  <data name="ShiftUpdated" xml:space="preserve">
+    <value>Shift updated.</value>
+  </data>
+  <data name="ShiftsCouldNotBeLoaded" xml:space="preserve">
+    <value>Shifts could not be loaded:
+</value>
+  </data>
+  <data name="ShiftDeactivated" xml:space="preserve">
+    <value>Shift deactivated.</value>
+  </data>
+  <data name="SelectAShift" xml:space="preserve">
+    <value>Select a shift.</value>
+  </data>
+  <data name="ShiftAndHours" xml:space="preserve">
+    <value>Shift and hours</value>
+  </data>
+  <data name="Shift2" xml:space="preserve">
+    <value>Shift: {0}  |  </value>
+  </data>
+  <data name="DataExceedsExcelSRowOrColumnLimit" xml:space="preserve">
+    <value>Data exceeds Excel's row or column limit.</value>
+  </data>
+  <data name="Database" xml:space="preserve">
+    <value>Database</value>
+  </data>
+  <data name="TheDatabaseConnectionIsNotConfigured" xml:space="preserve">
+    <value>The database connection is not configured.</value>
+  </data>
+  <data name="WindowsAuthentication" xml:space="preserve">
+    <value>Windows authentication</value>
+  </data>
+  <data name="Print" xml:space="preserve">
+    <value>Print</value>
+  </data>
+  <data name="ThereIsNoVisibleDataToPrint" xml:space="preserve">
+    <value>There is no visible data to print.</value>
+  </data>
+  <data name="NewUser" xml:space="preserve">
+    <value>New user</value>
+  </data>
+  <data name="Refresh" xml:space="preserve">
+    <value>Refresh</value>
+  </data>
+  <data name="AnnualLeave2" xml:space="preserve">
+    <value>Annual leave</value>
+  </data>
+  <data name="AnnualLeaveAllowance2" xml:space="preserve">
+    <value>Annual leave allowance</value>
+  </data>
+  <data name="Employees" xml:space="preserve">
+    <value>{0} employees</value>
+  </data>
+  <data name="CheckedInTime" xml:space="preserve">
+    <value>{0} checked in.
+Time: {1:HH:mm}</value>
+  </data>
+  <data name="RecordCheckInFor" xml:space="preserve">
+    <value>Record check-in for {0}.
+</value>
+  </data>
+  <data name="RecordCheckOutFor" xml:space="preserve">
+    <value>Record check-out for {0}.
+</value>
+  </data>
+  <data name="InsufficientRemainingAnnualLeaveFor" xml:space="preserve">
+    <value>Insufficient remaining annual leave for {0}.</value>
+  </data>
+  <data name="CheckedOutTime" xml:space="preserve">
+    <value>{0} checked out.
+Time: {1:HH:mm}</value>
+  </data>
+  <data name="SignedOut" xml:space="preserve">
+    <value>{0} signed out.</value>
+  </data>
+  <data name="HMin" xml:space="preserve">
+    <value>{0}h {1}min</value>
+  </data>
+  <data name="Employee4" xml:space="preserve">
+    <value>Employee</value>
+  </data>
+  <data name="Workdays" xml:space="preserve">
+    <value>Workdays</value>
+  </data>
+  <data name="WorkDuration" xml:space="preserve">
+    <value>Work duration</value>
+  </data>
+  <data name="WorkTimesOrShiftBreakDurationAreInvalid" xml:space="preserve">
+    <value>Work times or shift break duration are invalid.</value>
+  </data>
+  <data name="NoActiveEmployeeWhoHasStartedEmploymentWasFound" xml:space="preserve">
+    <value>No active employee who has started employment was found.</value>
+  </data>
+  <data name="Wed" xml:space="preserve">
+    <value>Wed</value>
+  </data>
+  <data name="Wednesday" xml:space="preserve">
+    <value>Wednesday</value>
+  </data>
+  <data name="Exit" xml:space="preserve">
+    <value>Exit</value>
+  </data>
+  <data name="CheckOutSuccessful" xml:space="preserve">
+    <value>Check-out successful</value>
+  </data>
+  <data name="ConfirmCheckOut" xml:space="preserve">
+    <value>Confirm check-out</value>
+  </data>
+  <data name="CheckOutTime" xml:space="preserve">
+    <value>Check-out time</value>
+  </data>
+  <data name="CheckOut" xml:space="preserve">
+    <value>Check out</value>
+  </data>
+  <data name="CheckOutFailed" xml:space="preserve">
+    <value>Check-out failed:
+</value>
+  </data>
+  <data name="CheckOut2" xml:space="preserve">
+    <value>Check-out: {0:hh\:mm}</value>
+  </data>
+  <data name="GenerateAReportContainingRecordsFirst" xml:space="preserve">
+    <value>Generate a report containing records first.</value>
+  </data>
+  <data name="SummaryReportFailed" xml:space="preserve">
+    <value>Summary report failed:
+</value>
+  </data>
+  <data name="UnpaidLeave2" xml:space="preserve">
+    <value>Unpaid leave</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="Cancelled2" xml:space="preserve">
+    <value>Cancelled</value>
+  </data>
+  <data name="ConfirmCancellation" xml:space="preserve">
+    <value>Confirm cancellation</value>
+  </data>
+  <data name="CancellationFailed" xml:space="preserve">
+    <value>Cancellation failed:
+</value>
+  </data>
+  <data name="StatisticsCouldNotBeLoaded" xml:space="preserve">
+    <value>Statistics could not be loaded: </value>
+  </data>
+  <data name="LeaveDescription" xml:space="preserve">
+    <value>Leave description</value>
+  </data>
+  <data name="LeaveStartDate" xml:space="preserve">
+    <value>Leave start date</value>
+  </data>
+  <data name="LeaveEndDate" xml:space="preserve">
+    <value>Leave end date</value>
+  </data>
+  <data name="LeaveDays" xml:space="preserve">
+    <value>Leave days</value>
+  </data>
+  <data name="LeaveAllowance" xml:space="preserve">
+    <value>Leave allowance</value>
+  </data>
+  <data name="SaveLeave" xml:space="preserve">
+    <value>Save leave</value>
+  </data>
+  <data name="LeaveReport" xml:space="preserve">
+    <value>Leave report</value>
+  </data>
+  <data name="RejectLeave" xml:space="preserve">
+    <value>Reject leave</value>
+  </data>
+  <data name="LeaveType" xml:space="preserve">
+    <value>Leave type</value>
+  </data>
+  <data name="SelectLeaveType" xml:space="preserve">
+    <value>Select leave type</value>
+  </data>
+  <data name="LeaveManagement" xml:space="preserve">
+    <value>Leave management</value>
+  </data>
+  <data name="LeaveManagement2" xml:space="preserve">
+    <value>Leave management</value>
+  </data>
+  <data name="ThisLeaveStatusDoesNotAllowTheOperationRefreshTheList" xml:space="preserve">
+    <value>This leave status does not allow the operation. Refresh the list.</value>
+  </data>
+  <data name="LeaveStatusHasChangedRefreshTheList" xml:space="preserve">
+    <value>Leave status has changed. Refresh the list.</value>
+  </data>
+  <data name="TheLeaveRecordHasChangedRefreshTheList" xml:space="preserve">
+    <value>The leave record has changed. Refresh the list.</value>
+  </data>
+  <data name="LeaveCouldNotBeSaved" xml:space="preserve">
+    <value>Leave could not be saved:
+</value>
+  </data>
+  <data name="LeaveRequestsCouldNotBeLoaded" xml:space="preserve">
+    <value>Leave requests could not be loaded:
+</value>
+  </data>
+  <data name="LeaveReportFailed" xml:space="preserve">
+    <value>Leave report failed:
+</value>
+  </data>
+  <data name="LeaveRequestCancelled" xml:space="preserve">
+    <value>Leave request cancelled.</value>
+  </data>
+  <data name="LeaveRequestSavedID" xml:space="preserve">
+    <value>Leave request saved. (ID: {0})</value>
+  </data>
+  <data name="LeaveRequestApproved" xml:space="preserve">
+    <value>Leave request approved.</value>
+  </data>
+  <data name="LeaveRequestRejected" xml:space="preserve">
+    <value>Leave request rejected.</value>
+  </data>
+  <data name="InvalidLeaveDateRange" xml:space="preserve">
+    <value>Invalid leave date range.</value>
+  </data>
+  <data name="SelectALeaveType" xml:space="preserve">
+    <value>Select a leave type.</value>
+  </data>
+  <data name="CancelLeave" xml:space="preserve">
+    <value>Cancel leave</value>
+  </data>
+  <data name="EmploymentStart" xml:space="preserve">
+    <value>Employment start</value>
+  </data>
+  <data name="EmploymentStartDate" xml:space="preserve">
+    <value>Employment start date</value>
+  </data>
+  <data name="AtWorkCheckedOutNotArrived" xml:space="preserve">
+    <value>At work / Checked out / Not arrived</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="PasswordMustContain850Characters" xml:space="preserve">
+    <value>Password must contain 8–50 characters.</value>
+  </data>
+  <data name="PasswordIsRequired" xml:space="preserve">
+    <value>Password is required.</value>
+  </data>
+  <data name="PasswordChanged" xml:space="preserve">
+    <value>Password changed</value>
+  </data>
+  <data name="NotCheckedIn" xml:space="preserve">
+    <value>● Not checked in</value>
+  </data>
+  <data name="CheckedOut" xml:space="preserve">
+    <value>● Checked out</value>
+  </data>
+  <data name="AtWork" xml:space="preserve">
+    <value>● At work</value>
+  </data>
+  <data name="EndDateCannotBeEarlierThanStartDate2" xml:space="preserve">
+    <value>⚠ End date cannot be earlier than start date.</value>
+  </data>
+  <data name="SignInRequired" xml:space="preserve">
+    <value>You must sign in to perform this operation.</value>
+  </data>
+  <data name="InsufficientPermissions" xml:space="preserve">
+    <value>You do not have permission to perform this operation.</value>
+  </data>
+  <data name="RoleAdmin" xml:space="preserve">
+    <value>Administrator</value>
+  </data>
+  <data name="RoleManager" xml:space="preserve">
+    <value>HR Manager</value>
+  </data>
+  <data name="RoleEmployee" xml:space="preserve">
+    <value>HR Employee</value>
+  </data>
+  <data name="EmployeeDetailsAreIncomplete" xml:space="preserve"><value>Employee details are incomplete.</value></data>
+  <data name="RequiredTextMaximum" xml:space="preserve"><value>{0} is required and must not exceed {1} characters.</value></data>
+  <data name="TextMaximum" xml:space="preserve"><value>{0} must not exceed {1} characters.</value></data>
+  <data name="PhotoPath" xml:space="preserve"><value>Photo path</value></data>
+  <data name="BirthDateMustPrecedeEmployment" xml:space="preserve"><value>Birth date cannot be in the future or after the employment start date.</value></data>
+  <data name="SelectActiveDepartmentAndPosition" xml:space="preserve"><value>The selected department and position must be active and belong together.</value></data>
+  <data name="AssignedShiftCannotBeDeactivated" xml:space="preserve"><value>Active personnel are assigned to this shift. Transfer them to another shift first.</value></data>
+  <data name="AuditWriteFailed" xml:space="preserve"><value>The audit record could not be written. The operation was not completed; check the connection and logging permissions.</value></data>
+  <data name="SqlAuthenticationRequired" xml:space="preserve"><value>Server, database, SQL username and password are required. Use SQL Server Authentication.</value></data>
+  <data name="TrustServerCertificate" xml:space="preserve"><value>Trust server certificate</value></data>
+  <data name="SqlServerAuthentication" xml:space="preserve"><value>SQL Server Authentication</value></data>
+</root>
